@@ -345,3 +345,73 @@ gsap.registerPlugin(ScrollTrigger);
     card.addEventListener('mouseenter', () => gsap.to(label, { scale:1.1, duration:.3, ease:'power2.out' }));
     card.addEventListener('mouseleave', () => gsap.to(label, { scale:1, duration:.3 }));
   });
+/* ═══════════════════════════════════════════════════════════
+   PAGE TRANSITIONS — curtain wipe
+═══════════════════════════════════════════════════════════ */
+(function() {
+  // Inject curtain element
+  const curtain = document.createElement('div');
+  curtain.className = 'curtain';
+  curtain.innerHTML = '<div class="curtain-logo">MR<span>•</span>HOME</div>';
+  document.body.appendChild(curtain);
+
+  const curtainLogo = curtain.querySelector('.curtain-logo');
+
+  // ENTER animation — runs on every page load (curtain slides OUT)
+  function curtainEnter() {
+    // Start curtain covering the page, then reveal
+    gsap.set(curtain, { scaleY: 1, transformOrigin: 'top', pointerEvents: 'none' });
+    gsap.to(curtainLogo, { opacity: 0, duration: 0 });
+    gsap.to(curtain, {
+      scaleY: 0,
+      duration: .9,
+      ease: 'power4.inOut',
+      transformOrigin: 'top',
+      delay: .1,
+    });
+  }
+
+  // EXIT animation — runs when a link is clicked
+  function curtainExit(href) {
+    curtain.style.pointerEvents = 'all';
+    gsap.set(curtain, { scaleY: 0, transformOrigin: 'bottom' });
+
+    const tl = gsap.timeline({
+      onComplete: () => window.location.href = href
+    });
+
+    tl.to(curtain, {
+      scaleY: 1,
+      duration: .8,
+      ease: 'power4.inOut',
+      transformOrigin: 'bottom',
+    })
+    .to(curtainLogo, {
+      opacity: 1,
+      duration: .3,
+      ease: 'power2.out',
+    }, '-=.2');
+  }
+
+  // Run enter animation on load
+  window.addEventListener('DOMContentLoaded', curtainEnter);
+
+  // Intercept all internal link clicks
+  document.addEventListener('click', e => {
+    const link = e.target.closest('a');
+    if (!link) return;
+
+    const href = link.getAttribute('href');
+    if (!href) return;
+
+    // Skip external links, anchors, and empty hrefs
+    if (href.startsWith('http') || href.startsWith('#') || href === '') return;
+
+    // Skip if modifier key held (open in new tab etc)
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+
+    e.preventDefault();
+    if (lenis) lenis.stop();
+    curtainExit(href);
+  });
+})();
