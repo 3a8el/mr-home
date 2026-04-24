@@ -769,3 +769,55 @@
   opacity: 0;
 }
 .curtain-logo span { color: var(--yellow-600); }
+
+/* ─── PRELOADER ───────────────────────────────────────────── */
+.preloader {
+  position: fixed;
+  inset: 0;
+  background: var(--gs-1100);
+  z-index: 999999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 48px;
+  clip-path: inset(0 0 0% 0);
+  will-change: clip-path;
+}
+.preloader-logo {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: .14em;
+  color: var(--gs-100);
+}
+.preloader-logo span { color: var(--yellow-600); }
+.preloader-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: min(400px, 80vw);
+}
+.preloader-bar-track {
+  width: 100%;
+  height: 1px;
+  background: rgba(255,255,255,.15);
+  position: relative;
+  overflow: hidden;
+}
+.preloader-bar-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--yellow-600);
+  transform-origin: left;
+  transform: scaleX(0);
+  will-change: transform;
+}
+.preloader-counter {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  color: var(--gs-600);
+}

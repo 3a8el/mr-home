@@ -12,15 +12,96 @@ gsap.registerPlugin(ScrollTrigger);
   gsap.ticker.add((time) => lenis.raf(time * 1000));
   gsap.ticker.lagSmoothing(0);
 
-  /* ═══════════════════════════════════════════════════════════
-     1. HERO — staggered load on page enter
-  ═══════════════════════════════════════════════════════════ */
-  gsap.from('.logo-wrap', { opacity:0, y:20, duration:.8, delay:.1, ease:'power3.out' });
-  gsap.from('.nav-links', { opacity:0, y:-20, duration:.8, delay:.2, ease:'power3.out' });
-  gsap.from('.hero-title', { opacity:0, y:40, duration:.9, delay:.35, ease:'power3.out' });
-  gsap.from('.hero-sub',   { opacity:0, y:30, duration:.8, delay:.55, ease:'power3.out' });
-  gsap.from('.avatar-row', { opacity:0, y:20, duration:.7, delay:.72, ease:'power3.out' });
-  gsap.from('.scroll-widget', { opacity:0, scale:.8, duration:.6, delay:.85, ease:'back.out(1.7)' });
+/* ═══════════════════════════════════════════════════════════
+   PRELOADER — percentage bar + counter + clip-out
+═══════════════════════════════════════════════════════════ */
+(function() {
+  const preloader = document.getElementById('preloader');
+  const bar       = document.getElementById('preloaderBar');
+  const counter   = document.getElementById('preloaderCounter');
+  if (!preloader) return;
+
+  // Prevent scroll during load
+  document.body.style.overflow = 'hidden';
+
+  let progress = 0;
+  let assetsLoaded = 0;
+  let totalAssets = 0;
+  let fakeProgress = 0;
+  let realDone = false;
+
+  // Count all images + track load
+  const images = document.querySelectorAll('img');
+  totalAssets = images.length || 1;
+
+  function onAssetLoad() {
+    assetsLoaded++;
+    const real = assetsLoaded / totalAssets;
+    if (real > fakeProgress) fakeProgress = real;
+    if (assetsLoaded >= totalAssets) realDone = true;
+  }
+
+  images.forEach(img => {
+    if (img.complete) { onAssetLoad(); }
+    else {
+      img.addEventListener('load', onAssetLoad);
+      img.addEventListener('error', onAssetLoad); // count errors too
+    }
+  });
+
+  // Animate the bar smoothly regardless of real progress
+  // Uses a fake ticker that rushes to real progress
+  let displayProgress = 0;
+
+  const ticker = gsap.ticker.add(() => {
+    // Target: real progress, but always creep forward
+    const target = realDone ? 1 : Math.min(fakeProgress + 0.05, 0.92);
+    displayProgress += (target - displayProgress) * 0.04;
+    if (realDone && displayProgress > 0.995) displayProgress = 1;
+
+    // Update bar and counter
+    gsap.set(bar, { scaleX: displayProgress });
+    const pct = Math.round(displayProgress * 100);
+    if (counter) counter.textContent = pct + '%';
+
+    // When we hit 100% — exit
+    if (displayProgress >= 0.999 && realDone) {
+      gsap.ticker.remove(ticker);
+      exitPreloader();
+    }
+  });
+
+  // Safety net: force complete after 4s max
+  setTimeout(() => {
+    realDone = true;
+  }, 4000);
+
+  function exitPreloader() {
+    const tl = gsap.timeline({ onComplete: startHeroAnimations });
+    tl.to(preloader, {
+      clipPath: 'inset(0 0 100% 0)',
+      duration: 1,
+      ease: 'power4.inOut',
+      delay: 0.2,
+      onComplete() {
+        preloader.style.display = 'none';
+        document.body.style.overflow = '';
+      }
+    });
+  }
+})();
+
+/* ═══════════════════════════════════════════════════════════
+   1. HERO — fires after preloader exits
+═══════════════════════════════════════════════════════════ */
+function startHeroAnimations() {
+  gsap.from('.logo-wrap',    { opacity:0, y:20,  duration:.8, delay:.05, ease:'power3.out' });
+  gsap.from('.nav-links',    { opacity:0, y:-20, duration:.8, delay:.15, ease:'power3.out' });
+  gsap.from('.hero-title',   { opacity:0, y:40,  duration:.9, delay:.3,  ease:'power3.out' });
+  gsap.from('.hero-sub',     { opacity:0, y:30,  duration:.8, delay:.5,  ease:'power3.out' });
+  gsap.from('.avatar-row',   { opacity:0, y:20,  duration:.7, delay:.65, ease:'power3.out' });
+  gsap.from('.scroll-widget',{ opacity:0, scale:.8, duration:.6, delay:.78, ease:'back.out(1.7)' });
+}
 
   /* ═══════════════════════════════════════════════════════════
      2. JOURNEY TITLE LINES — stagger slide in from left
@@ -393,8 +474,10 @@ gsap.registerPlugin(ScrollTrigger);
     }, '-=.2');
   }
 
-  // Run enter animation on load
-  window.addEventListener('DOMContentLoaded', curtainEnter);
+  // Run enter animation on load — only if no preloader
+  window.addEventListener('DOMContentLoaded', () => {
+    if (!document.getElementById('preloader')) curtainEnter();
+  });
 
   // Intercept all internal link clicks
   document.addEventListener('click', e => {
