@@ -232,6 +232,7 @@
   background: var(--gs-200);
   padding: 44px 32px;
   overflow: hidden;
+  margin: 0 32px 105px;
 }
 
 .about-difference-texture {
@@ -244,7 +245,7 @@
 
 .about-difference-inner {
   position: relative;
-  max-width: 1312px;
+  /* max-width: 1312px; */
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -289,11 +290,12 @@
 .about-culture-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  gap: 32px;
 }
 
 .about-culture-card {
   display: flex;
+  padding: 40px 0;
   flex-direction: column;
   align-items: center;
   gap: 16px;
