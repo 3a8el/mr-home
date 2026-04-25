@@ -27,18 +27,19 @@
   flex: 1;
   display: flex;
   align-items: flex-start;
-  gap: 80px;
-  padding: 180px 64px 0;
+  gap: 0;
+  padding: 0;
   width: 100%;
-  overflow: hidden;
+  overflow: visible;
+  margin-top: 84px;
 }
 
 .about-hero-left {
-  flex: 1;
+  flex: 0 0 50%;
   display: flex;
   flex-direction: column;
   gap: 28px;
-  padding-bottom: 80px;
+  padding: 96px 64px 80px 64px;
 }
 
 .about-hero-title-wrap {
@@ -53,12 +54,13 @@
   line-height: 1.2;
 }
 
-/* highlight — yellow bg + LEFT bracket line + RIGHT bracket line */
+/* highlight — yellow bg + LEFT bracket line + RIGHT bracket line + dots */
 .about-title-highlight {
   position: relative;
   display: inline-block;
 }
 
+/* yellow background */
 .about-title-highlight::before {
   content: '';
   position: absolute;
@@ -67,38 +69,40 @@
   z-index: -1;
 }
 
-/* left bracket */
+/* left bracket line */
 .about-title-highlight::after {
   content: '';
   position: absolute;
-  left: -12px; top: -8px;
-  width: 2px; height: calc(100% + 16px);
+  left: -12px; top: -4px;
+  width: 2px; height: calc(100% + 8px);
   background: var(--yellow-600);
 }
 
-/* right bracket via extra span */
+/* right bracket */
 .about-title-bracket-r {
   position: absolute;
-  right: -12px; top: -8px;
-  width: 2px; height: calc(100% + 16px);
+  right: -12px; top: -4px;
+  width: 2px; height: calc(100% + 8px);
   background: var(--yellow-600);
-  pointer-events: none;
+  display: block;
 }
 
-/* bracket corner dots */
+/* corner dots */
 .about-title-dot-tr {
   position: absolute;
-  right: -14px; top: -10px;
-  width: 6px; height: 6px;
+  right: -16px; top: -8px;
+  width: 5px; height: 5px;
   border-radius: 50%;
   background: var(--yellow-600);
+  display: block;
 }
 .about-title-dot-bl {
   position: absolute;
-  left: -14px; bottom: -10px;
-  width: 6px; height: 6px;
+  left: -16px; bottom: -8px;
+  width: 5px; height: 5px;
   border-radius: 50%;
   background: var(--yellow-600);
+  display: block;
 }
 
 .about-hero-subtitle {
@@ -119,12 +123,11 @@
 
 /* ─── PHOTO GRID ─────────────────────────────────────────── */
 .about-hero-grid {
-  flex: 0 0 582px;
+  flex: 0 0 50%;
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 104px); /* full remaining height */
-  overflow: hidden;
-  align-self: stretch;
+  height: calc(100vh - 84px + 140px); /* 140px of 4th image bleeds below hero */
+  overflow: visible;
 }
 
 .about-grid-img {
@@ -140,6 +143,12 @@
 }
 
 .about-grid-img:hover img { transform: scale(1.05); }
+
+/* ─── SCROLL WIDGET (override to match home page size) ─── */
+.about-hero .scroll-widget {
+  width: fit-content;
+  align-self: flex-start;
+}
 
 /* ─── JOURNEY SECTION ────────────────────────────────────── */
 .about-journey {
