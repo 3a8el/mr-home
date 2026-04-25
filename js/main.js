@@ -282,16 +282,27 @@ function startHeroAnimations() {
     const hoverTargets = document.querySelectorAll('a, button, .service-card, .scroll-widget');
     let isHovering = false;
 
+    // Hide cursor until first mouse move
+    dot.classList.add('is-hidden');
+    ring.classList.add('is-hidden');
+    let hasMoved = false;
+
     window.addEventListener('mousemove', e => {
       mouseX = e.clientX;
       mouseY = e.clientY;
+
+      // Show cursor on first move
+      if (!hasMoved) {
+        hasMoved = true;
+        dot.classList.remove('is-hidden');
+        ring.classList.remove('is-hidden');
+      }
 
       // Center dot on mouse point
       dot.style.left = (mouseX - 4) + 'px';
       dot.style.top  = (mouseY - 4) + 'px';
 
       // Check hover by testing bounding rects of all hoverable elements
-      // This works correctly even inside GSAP-pinned/sticky containers
       let overHoverable = false;
       document.querySelectorAll('a, button, .service-card, .scroll-widget').forEach(el => {
         const r = el.getBoundingClientRect();
