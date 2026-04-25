@@ -153,8 +153,8 @@
 
 /* ─── JOURNEY SECTION ────────────────────────────────────── */
 .about-journey {
-  padding: 80px 64px;
-  max-width: 1440px;
+  padding: 104px 64px;
+  /* max-width: 1440px; */
   margin: 0 auto;
   width: 100%;
 }
@@ -202,7 +202,7 @@
 /* ─── IMAGE COLLAGE ──────────────────────────────────────── */
 .about-collage {
   position: relative;
-  height: 560px;
+  height: 100vh;
   overflow: hidden;
 }
 
@@ -218,12 +218,12 @@
 
 .about-collage-img-1 {
   left: 0; top: 0;
-  width: 65%; height: 463px;
+  width: 65%; height: 75vh;
 }
 
 .about-collage-img-2 {
-  left: 25%; top: 115px;
-  width: 70%; height: 526px;
+  right: 0; top: 115px;
+  width: 70%; height: 75vh;
 }
 
 /* ─── DIFFERENCE SECTION ─────────────────────────────────── */
