@@ -735,7 +735,7 @@
 
   /* ─── RESPONSIVE ─────────────────────────────────────────── */
   @media (max-width: 900px) {
-    .navbar { left: 24px; right: 24px; top: 28px; }
+    .navbar { left: 24px; right: 24px; top: 28px; width: auto;}
     .nav-links { display: none; }
     .hero-content { left: 24px; right: 24px; bottom: 48px; }
     .hero-left { max-width: 100%; }
@@ -773,7 +773,7 @@
   }
     .cta-title .line1 {
     display: block;
-    text-align: center;
+    text-align: right;
   }
     .cta-title .line1::before { display: block; left: -8px; top: 0; width: calc(100% + 16px); height: 100%; }
     .cta-title .line1::after { display: block; left: -8px; }
