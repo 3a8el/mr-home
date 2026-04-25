@@ -325,7 +325,8 @@
 /* ─── SUSTAINABILITY ─────────────────────────────────────── */
 .about-sustainability {
   background: #fff;
-  padding: 0 40px 80px;
+  padding: 0 0 80px;
+  overflow: visible;
 }
 
 .about-sust-images {
@@ -333,7 +334,7 @@
   height: 480px;
   overflow: hidden;
   border-radius: 8px;
-  margin-bottom: 40px;
+  margin-bottom: 0;
 }
 
 .about-sust-images img {
@@ -345,9 +346,16 @@
 
 /* Content row */
 .about-sust-content {
+  position: relative;
+  z-index: 2;
+  margin: -60px 40px 0;
+  background: #fff;
+  border-radius: 8px 8px 0 0;
+  padding: 40px 48px;
   display: flex;
   align-items: flex-start;
   gap: 80px;
+  box-shadow: 0 -4px 24px rgba(0,0,0,0.06);
 }
 
 .about-sust-content-left {
@@ -377,6 +385,7 @@
   flex-direction: column;
   gap: 16px;
   padding-top: 4px;
+  align-items: flex-start;
 }
 
 .about-sust-subtitle-wrap {
