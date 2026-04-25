@@ -536,8 +536,14 @@
   .about-collage-img-2 { left: 20%; top: 80px; width: 80%; height: 320px; }
 
   /* ─── DIFFERENCE ─── */
-  .about-difference { padding: 40px 20px; }
-  .about-culture-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .about-difference { 
+    margin-top: 40px; /* ← adds space before the gray patterned section */
+    padding: 40px 20px; 
+  }
+  .about-culture-grid { 
+    grid-template-columns: 1fr; /* ← each card takes full row */
+    gap: 12px; 
+  }
   .about-culture-card { height: auto; padding: 20px 0; }
 
   /* ─── SUSTAINABILITY ─── */
