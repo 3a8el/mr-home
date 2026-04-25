@@ -462,34 +462,6 @@
   line-height: 1.75;
 }
 
-/* ── Mobile ── */
-@media (max-width: 900px) {
-  .about-sustainability { padding: 0 0 60px; }
-  .about-sust-images { height: 596px; }
-  .about-sust-images {border-radius: 0;}
-  .about-sust-content {
-    flex-direction: column;
-    gap: 24px;
-    margin: -40px 16px 0;
-    padding: 28px 24px;
-  }
-  .about-sust-content-left {
-    display: flex;           /* ← override the desktop grid */
-    flex-direction: column;
-    width: 100%;
-    flex: none;
-    gap: 8px;
-  }
-
-  .about-sust-label {
-    padding-top: 0;         /* remove desktop nudge */
-    white-space: normal;
-  }
-
-  .about-sust-title { font-size: 36px; }
-  .about-sust-subtitle { white-space: normal; }
-}
-
 /* ─── MOBILE ─────────────────────────────────────────────── */
 @media (max-width: 900px) {
 
@@ -517,10 +489,9 @@
   .about-hero-subtitle { font-size: 16px; }
   .about-hero-desc { max-width: 100%; font-size: 14px; }
 
-  /* hide scroll widget */
   .about-hero .scroll-widget { display: none; }
 
-  /* ─── PHOTO GRID — single column ─── */
+  /* ─── PHOTO GRID ─── */
   .about-hero-grid {
     flex: none;
     width: 100%;
@@ -546,42 +517,58 @@
   .about-collage-img-2 { left: 20%; top: 80px; width: 80%; height: 320px; }
 
   /* ─── DIFFERENCE ─── */
-  .about-difference { 
-    margin-top: 40px; /* ← adds space before the gray patterned section */
-    padding: 40px 20px; 
+  .about-difference {
+    margin-top: 40px;
+    padding: 40px 20px;
   }
-  .about-culture-grid { 
-    grid-template-columns: 1fr; /* ← each card takes full row */
-    gap: 12px; 
+  .about-culture-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
   }
   .about-culture-card { height: auto; padding: 20px 0; }
 
   /* ─── SUSTAINABILITY ─── */
+  .about-sustainability { padding: 0 0 60px; }
+
+  .about-sust-images {
+    height: 596px;
+    border-radius: 0;
+  }
+
   .about-sust-content {
     flex-direction: column;
     gap: 24px;
     margin: -40px 16px 0;
     padding: 28px 24px;
   }
-  .about-sust-content-left {
-    flex: none;
-    width: 100%;
-    grid-template-columns: auto 1fr;
-  }
-.about-sust-title-cont {
-  font-size: 36px;
-  grid-column: unset;     /* remove desktop grid-column */
-}
 
-.about-sust-subtitle-wrap {
-  display: inline-flex;
-  width: auto;
-  white-space: normal;    /* allow wrapping */
-  align-self: flex-start; /* don't stretch */
-}
+  .about-sust-content-left {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    flex: none;
+    gap: 8px;
+  }
+
+  .about-sust-label {
+    padding-top: 0;
+    white-space: normal;
+  }
 
   .about-sust-title { font-size: 36px; }
-  .about-sust-title-cont { font-size: 36px; }
+
+  .about-sust-title-cont {
+    font-size: 36px;
+    grid-column: unset;
+  }
+
+  .about-sust-subtitle-wrap {
+    display: inline-flex;
+    width: auto;
+    white-space: normal;
+    align-self: flex-start;
+  }
+
   .about-sust-subtitle { white-space: normal; }
 
 }
