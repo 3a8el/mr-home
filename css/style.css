@@ -319,7 +319,7 @@
     background: var(--yellow-600);
     color: var(--gs-100);
     font-size: 13px; font-weight: 700; letter-spacing: .07em;
-    padding: 4px 40px;
+    padding: 8px 40px;
     border-radius: 6px;
     cursor: pointer;
     border: none;
@@ -435,8 +435,7 @@
   position: relative;
   overflow: hidden;
   border-radius: 12px;
-  padding: 100px 64px;
-  background: var(--gs-200);
+  padding: 144px 64px;
   display: flex;
   align-items: center;
   justify-content: center;
