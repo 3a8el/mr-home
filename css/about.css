@@ -151,64 +151,6 @@
   align-self: flex-start;
 }
 
-/* ─── Mobile CSS ─── */
-@media (max-width: 900px) {
-
-  /* ─── HERO ─── */
-  .about-hero {
-    height: auto;
-    min-height: 100vh;
-  }
-
-  .about-hero-content {
-    flex-direction: column;
-    padding: 40px 24px 0;
-    margin-top: 70px;
-    gap: 40px;
-  }
-
-  .about-hero-left {
-    flex: none;
-    width: 100%;
-    gap: 20px;
-  }
-
-  .about-hero-title {
-    font-size: 44px; /* ← 44px as requested */
-  }
-
-  .about-hero-subtitle {
-    font-size: 16px;
-  }
-
-  .about-hero-desc {
-    font-size: 14px;
-    max-width: 100%;
-  }
-
-  /* hide scroll widget */
-  .about-hero .scroll-widget {
-    display: none;
-  }
-
-  /* ─── PHOTO GRID ─── */
-  .about-hero-grid {
-    flex: none;
-    width: 100%;
-    height: auto;        /* remove fixed height */
-    flex-direction: column;
-    margin-top: 0;
-    overflow: visible;
-  }
-
-  .about-grid-img {
-    flex: none;
-    width: 100%;
-    height: 260px;       /* fixed height per image */
-  }
-
-}
-
 /* ─── JOURNEY SECTION ────────────────────────────────────── */
 .about-journey {
   padding: 104px 64px;
@@ -540,47 +482,79 @@
 
 /* ─── MOBILE ─────────────────────────────────────────────── */
 @media (max-width: 900px) {
+
+  /* ─── HERO ─── */
+  .about-hero {
+    height: auto;
+    min-height: 100vh;
+  }
+
   .about-hero-content {
     flex-direction: column;
-    padding: 100px 24px 0;
+    padding: 40px 24px 0;
+    margin-top: 70px;
     gap: 40px;
     overflow: visible;
   }
 
+  .about-hero-left {
+    flex: none;
+    width: 100%;
+    gap: 20px;
+  }
+
+  .about-hero-title { font-size: 44px; }
+  .about-hero-subtitle { font-size: 16px; }
+  .about-hero-desc { max-width: 100%; font-size: 14px; }
+
+  /* hide scroll widget */
+  .about-hero .scroll-widget { display: none; }
+
+  /* ─── PHOTO GRID — single column ─── */
   .about-hero-grid {
     flex: none;
     width: 100%;
-    height: 320px;
-    flex-direction: row;
-    flex-wrap: wrap;
+    height: auto;
+    flex-direction: column;
+    margin-top: 0;
+    overflow: visible;
   }
 
   .about-grid-img {
-    flex: 0 0 50%;
-    height: 160px;
+    flex: none;
+    width: 100%;
+    height: 260px;
   }
 
-  .about-hero-title { font-size: 32px; }
-  .about-hero-desc { max-width: 100%; }
-
+  /* ─── JOURNEY ─── */
   .about-journey { padding: 48px 24px; }
   .about-journey-title { font-size: 28px; }
 
+  /* ─── COLLAGE ─── */
   .about-collage { height: 400px; }
   .about-collage-img-1 { width: 70%; height: 300px; }
   .about-collage-img-2 { left: 20%; top: 80px; width: 80%; height: 320px; }
 
+  /* ─── DIFFERENCE ─── */
   .about-difference { padding: 40px 20px; }
   .about-culture-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
   .about-culture-card { height: auto; padding: 20px 0; }
 
-  .about-sustainability { height: auto; min-height: 500px; }
-  .about-sustainability-inner {
+  /* ─── SUSTAINABILITY ─── */
+  .about-sust-images { height: 260px; }
+  .about-sust-content {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 32px;
-    padding: 48px 24px;
+    gap: 24px;
+    margin: -40px 16px 0;
+    padding: 28px 24px;
   }
-  .about-sustainability-right { flex: none; width: 100%; }
+  .about-sust-content-left {
+    flex: none;
+    width: 100%;
+    grid-template-columns: auto 1fr;
+  }
   .about-sust-title { font-size: 36px; }
+  .about-sust-title-cont { font-size: 36px; }
+  .about-sust-subtitle { white-space: normal; }
+
 }
