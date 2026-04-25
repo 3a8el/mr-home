@@ -426,7 +426,6 @@
 
   /* ─── CTA SECTION ────────────────────────────────────────── */
  .section-cta {
-  background: var(--gs-200);
   padding: 154px 64px;
   position: relative;
 }
