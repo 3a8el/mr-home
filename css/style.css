@@ -755,7 +755,7 @@
     .journey-title .line-2b { display: block; text-align: right; }
     .journey-title .line-3 { display: inline-block; text-align: left; }
     .section-cta { padding: 24px 16px; }
-    .cta-card { padding: 44px 24px; }
+    .cta-card { padding: 60px 24px; }
     .cta-side {
     display: none;
   }
@@ -765,7 +765,7 @@
     .cta-left { width: 100%; }
     .cta-right { max-width: 100%; width: 100%; margin-left: 0; }
     .cta-title {
-    font-size: 48px;
+    font-size: 32px;
     width: 100%;
   }
     .cta-title-block {
@@ -775,14 +775,13 @@
     .cta-title .line1 {
     display: block;
     text-align: center;
-    margin-bottom: 0;
   }
     .cta-title .line1::before { display: block; left: -8px; top: 0; width: calc(100% + 16px); height: 100%; }
     .cta-title .line1::after { display: block; left: -8px; }
     .cta-bracket-right { display: block; }
     .cta-bracket-dot { display: block; }
     .cta-bracket-dot-bl { display: block; }
-    .cta-title .line2 {
+     .cta-title .line2 {
     display: block;
     text-align: left;
   }
@@ -799,12 +798,14 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
-    padding: 16px 0;
-  }
-   .cta-mobile-content .cta-text {
+    padding-top: 24px;
     text-align: center;
+  }
+
+   .cta-mobile-content .cta-text {
     font-size: 15px;
     line-height: 1.7;
+    text-align: center;
   }
   .cta-mobile-content .btn {
     width: 100%;
