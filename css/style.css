@@ -425,108 +425,136 @@
 
 
   /* ─── CTA SECTION ────────────────────────────────────────── */
-  .section-cta {
-    background: var(--gs-200);
-    padding: 48px 32px;
-    position: relative;
-  }
-  .cta-card {
-    position: relative;
-    overflow: hidden;
-    border-radius: 12px;
-    padding: 100px 64px;
-    background: var(--gs-200);
-    display: flex; align-items: center; justify-content: center;
-  }
-  .cta-texture {
-    position: absolute; inset: 0;
-    border-radius: 0;
-    background: url('https://www.figma.com/api/mcp/asset/5f46955b-1d4f-49e5-847e-ffd5e67888de') center/cover;
-    opacity: .35; pointer-events: none;
-  }
-  .cta-inner {
-    position: relative; z-index: 1;
-    display: flex; align-items: center;
-    justify-content: center;
-    gap: 0;
-    width: 100%;
-  }
-  .cta-left {
-    flex-shrink: 0;
-    position: relative;
-    width: 55%;
-  }
-  .cta-title {
-    font-size: clamp(60px, 6.5vw, 96px);
-    line-height: 1.15;
-    color: var(--gs-1100);
-    position: relative;
-  }
-  .cta-title .line1 {
-    display: inline-block;
-    position: relative;
-  }
-  /* yellow highlight — tight to the text line */
-  .cta-title .line1::before {
-    content: '';
-    position: absolute;
-    left: -12px; top: 4px;
-    width: calc(100% + 24px);
-    height: calc(100% - 8px);
-    background: var(--yellow-highlight);
-    border-radius: 4px;
-    z-index: -1;
-  }
-  /* left vertical bracket line — extends ~12px above and below highlight */
-  .cta-title .line1::after {
-    content: '';
-    position: absolute;
-    left: -12px; top: -8px;
-    width: 2px; height: calc(100% + 8px);
-    background: var(--yellow-600);
-  }
-  /* right vertical bracket line */
-  .cta-bracket-right {
-    position: absolute;
-    right: -12px; top: -8px;
-    width: 2px; height: calc(100% + 8px);
-    background: var(--yellow-600);
-    display: block;
-  }
-  /* top-right dot */
-  .cta-bracket-dot {
-    position: absolute;
-    right: -16px; top: -12px;
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: var(--yellow-600);
-    display: block;
-  }
-  /* bottom-left dot */
-  .cta-bracket-dot-bl {
-    position: absolute;
-    left: -16px; bottom: -4px;
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: var(--yellow-600);
-    display: block;
-  }
-  .cta-title .line1 { display: inline-block; position: relative; }
-  .cta-title .line2 { display: block; }
-  .cta-title .line3 { display: block; }
+ .section-cta {
+  background: var(--gs-200);
+  padding: 48px 32px;
+  position: relative;
+}
 
-  .cta-right {
-    max-width: 503px;
-    width: 503px;
-    display: flex; flex-direction: column;
-    gap: 28px;
-    align-self: center;
-    flex-shrink: 0;
-    margin-left: -120px;
-    position: relative;
-    z-index: 2;
-  }
-  .cta-text { font-size: 15px; font-weight: 500; line-height: 1.7; color: var(--gs-1100); }
+.cta-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  padding: 100px 64px;
+  background: var(--gs-200);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cta-texture {
+  position: absolute; inset: 0;
+  background: url('https://www.figma.com/api/mcp/asset/5f46955b-1d4f-49e5-847e-ffd5e67888de') center/cover;
+  opacity: .35;
+  pointer-events: none;
+}
+
+.cta-inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.cta-title-block {
+  display: flex;
+  justify-content: center;
+}
+
+.cta-title {
+  font-size: 80px;
+  line-height: 1.15;
+  color: var(--gs-1100);
+  position: relative;
+}
+
+/* line1 — Transforming */
+.cta-title .line1 {
+  display: inline-block;
+  position: relative;
+}
+
+.cta-title .line1::before {
+  content: '';
+  position: absolute;
+  left: -12px; top: 4px;
+  width: calc(100% + 24px);
+  height: calc(100% - 8px);
+  background: var(--yellow-highlight);
+  border-radius: 4px;
+  z-index: -1;
+}
+
+.cta-title .line1::after {
+  content: '';
+  position: absolute;
+  left: -12px; top: -8px;
+  width: 2px; height: calc(100% + 8px);
+  background: var(--yellow-600);
+}
+
+.cta-bracket-right {
+  position: absolute;
+  right: -12px; top: -8px;
+  width: 2px; height: calc(100% + 8px);
+  background: var(--yellow-600);
+  display: block;
+}
+
+.cta-bracket-dot {
+  position: absolute;
+  right: -16px; top: -12px;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--yellow-600);
+  display: block;
+}
+
+.cta-bracket-dot-bl {
+  position: absolute;
+  left: -16px; bottom: -4px;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--yellow-600);
+  display: block;
+}
+
+/* line2 — Visions + side content */
+.cta-title .line2 {
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
+}
+
+/* paragraph tucked beside Visions */
+.cta-side {
+  display: flex;
+  align-items: center;
+  padding-top: 16px; /* nudge down to sit between lines */
+}
+
+.cta-text {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.7;
+  color: var(--gs-1100);
+  max-width: 380px;
+}
+
+/* line3 — button + Into Reality */
+.cta-title .line3 {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  letter-spacing: 0.04em; /* spread on Into Reality */
+}
+
+.cta-btn {
+  font-size: 13px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
 
   /* ─── FOOTER ─────────────────────────────────────────────── */
   footer {
