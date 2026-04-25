@@ -361,12 +361,11 @@
 .about-sust-content-left {
   flex: 0 0 40%;
   width: 40%;
-  display: grid;
-  grid-template-columns: auto 1fr; /* label left, title right */
-  align-items: start;              /* both align to top */
-  column-gap: 16px;
+  display: flex;
+  flex-direction: column;  /* back to column */
   padding: 0;
   min-width: unset;
+  gap: 0;
 }
 
 .about-sust-label {
@@ -375,8 +374,7 @@
   letter-spacing: 0.1em;
   color: #888;
   text-transform: uppercase;
-  padding-top: 6px; /* nudge down to align with first line of title */
-  white-space: nowrap;
+  margin-bottom: 0;
 }
 
 .about-sust-title {
@@ -384,6 +382,7 @@
   color: var(--gs-1100);
   line-height: 1.15;
   margin: 0;
+  /* Remove the <br> from HTML — let it wrap naturally */
 }
 
 /* ── Right column ── */
