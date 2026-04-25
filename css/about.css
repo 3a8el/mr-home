@@ -1,0 +1,428 @@
+/* ═══════════════════════════════════════════════════════════
+   ABOUT PAGE STYLES
+═══════════════════════════════════════════════════════════ */
+
+/* ─── HERO ──────────────────────────────────────────────── */
+.about-hero {
+  position: relative;
+  min-height: 100vh;
+  background: var(--gs-1100);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.about-hero-texture {
+  position: absolute; inset: 0;
+  background-image: url('https://www.figma.com/api/mcp/asset/9a9d0c32-3031-4668-aec8-8209aa1c893e');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+.about-hero .navbar { position: relative; z-index: 10; }
+
+.about-hero-content {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 80px;
+  padding: 60px 64px 80px;
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.about-hero-left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.about-hero-title-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.about-hero-title {
+  font-size: clamp(36px, 4vw, 50px);
+  color: var(--gs-200);
+  line-height: 1.2;
+}
+
+.about-title-highlight {
+  position: relative;
+  display: inline-block;
+}
+
+.about-title-highlight::before {
+  content: '';
+  position: absolute;
+  inset: 0 -10px;
+  background: rgba(233, 201, 28, 0.18);
+  z-index: -1;
+}
+
+.about-title-highlight::after {
+  content: '';
+  position: absolute;
+  left: -12px; top: 0;
+  width: 2px; height: 100%;
+  background: var(--yellow-600);
+}
+
+.about-hero-subtitle {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--gs-200);
+  line-height: 1.5;
+}
+
+.about-hero-desc {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--gs-200);
+  line-height: 1.7;
+  max-width: 491px;
+  opacity: 0.85;
+}
+
+/* ─── PHOTO GRID ─────────────────────────────────────────── */
+.about-hero-grid {
+  flex: 0 0 646px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  height: 574px;
+  overflow: hidden;
+}
+
+.about-grid-img {
+  overflow: hidden;
+  height: 143px;
+}
+
+.about-grid-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform .6s ease;
+}
+
+.about-grid-img:hover img { transform: scale(1.05); }
+
+/* span images across full width */
+.about-grid-img:nth-child(1),
+.about-grid-img:nth-child(2),
+.about-grid-img:nth-child(3),
+.about-grid-img:nth-child(4) {
+  grid-column: span 2;
+}
+
+/* ─── JOURNEY SECTION ────────────────────────────────────── */
+.about-journey {
+  padding: 80px 64px;
+  max-width: 1440px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.about-journey-inner {
+  max-width: 634px;
+}
+
+.about-journey-title {
+  font-size: clamp(32px, 3vw, 44px);
+  color: var(--gs-1100);
+  line-height: 1.3;
+  margin-bottom: 24px;
+}
+
+.about-journey-highlight {
+  position: relative;
+  display: inline-block;
+}
+
+.about-journey-highlight::before {
+  content: '';
+  position: absolute;
+  inset: 0 -8px;
+  background: rgba(233, 201, 28, 0.18);
+  z-index: -1;
+}
+
+.about-journey-highlight::after {
+  content: '';
+  position: absolute;
+  right: -10px; top: 0;
+  width: 2px; height: 100%;
+  background: var(--yellow-600);
+}
+
+.about-journey-desc {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--gs-1100);
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+/* ─── IMAGE COLLAGE ──────────────────────────────────────── */
+.about-collage {
+  position: relative;
+  height: 560px;
+  overflow: hidden;
+}
+
+.about-collage-img {
+  position: absolute;
+  overflow: hidden;
+}
+
+.about-collage-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+
+.about-collage-img-1 {
+  left: 0; top: 0;
+  width: 65%; height: 463px;
+}
+
+.about-collage-img-2 {
+  left: 25%; top: 115px;
+  width: 70%; height: 526px;
+}
+
+/* ─── DIFFERENCE SECTION ─────────────────────────────────── */
+.about-difference {
+  position: relative;
+  background: var(--gs-200);
+  padding: 44px 32px;
+  overflow: hidden;
+}
+
+.about-difference-texture {
+  position: absolute; inset: 0;
+  background-image: url('https://www.figma.com/api/mcp/asset/9a9d0c32-3031-4668-aec8-8209aa1c893e');
+  background-size: cover;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.about-difference-inner {
+  position: relative;
+  max-width: 1312px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.about-difference-title {
+  font-size: clamp(32px, 3vw, 44px);
+  color: var(--gs-1100);
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+
+.about-diff-highlight {
+  position: relative;
+  display: inline-block;
+}
+
+.about-diff-highlight::before {
+  content: '';
+  position: absolute;
+  inset: 0 -8px;
+  background: rgba(233, 201, 28, 0.18);
+  z-index: -1;
+}
+
+.about-diff-highlight::after {
+  content: '';
+  position: absolute;
+  right: -10px; top: 0;
+  width: 2px; height: 100%;
+  background: var(--yellow-600);
+}
+
+.about-difference-desc {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--gs-1100);
+  line-height: 1.7;
+}
+
+.about-culture-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.about-culture-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  height: 198px;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.about-culture-label {
+  background: var(--gs-400);
+  padding: 12px 20px;
+  font-size: 24px;
+  color: var(--gs-1100);
+  width: 100%;
+  text-align: center;
+}
+
+.about-culture-text {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--gs-600);
+  line-height: 1.7;
+  text-align: center;
+  max-width: 276px;
+}
+
+/* ─── SUSTAINABILITY ─────────────────────────────────────── */
+.about-sustainability {
+  position: relative;
+  height: 596px;
+  overflow: hidden;
+}
+
+.about-sustainability-bg {
+  position: absolute; inset: 0;
+}
+
+.about-sustainability-bg img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.about-sustainability-overlay {
+  position: absolute; inset: 0;
+  background: rgba(0,0,0,.5);
+}
+
+.about-sustainability-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 36px;
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 80px;
+  background: rgba(255,255,255,.06);
+  border-radius: 6px 6px 0 0;
+}
+
+.about-sustainability-left {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.about-sust-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gs-700);
+  letter-spacing: .08em;
+}
+
+.about-sust-title {
+  font-size: clamp(36px, 4vw, 50px);
+  color: var(--gs-1100);
+  line-height: 1.2;
+}
+
+.about-sust-highlight {
+  position: relative;
+  display: inline-block;
+}
+
+.about-sust-highlight::before {
+  content: '';
+  position: absolute;
+  inset: 0 -8px;
+  background: rgba(233, 201, 28, 0.18);
+  z-index: -1;
+}
+
+.about-sustainability-right {
+  flex: 0 0 662px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-bottom: 24px;
+}
+
+.about-sust-subtitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--gs-1100);
+  line-height: 1.5;
+}
+
+.about-sust-desc {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--gs-1100);
+  line-height: 1.7;
+}
+
+/* ─── MOBILE ─────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .about-hero-content {
+    flex-direction: column;
+    padding: 40px 24px 60px;
+    gap: 40px;
+  }
+
+  .about-hero-grid {
+    flex: none;
+    width: 100%;
+    height: 300px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+
+  .about-grid-img {
+    height: 150px;
+    grid-column: span 1 !important;
+  }
+
+  .about-hero-title { font-size: 32px; }
+  .about-hero-desc { max-width: 100%; }
+
+  .about-journey { padding: 48px 24px; }
+  .about-journey-title { font-size: 28px; }
+
+  .about-collage { height: 400px; }
+  .about-collage-img-1 { width: 70%; height: 300px; }
+  .about-collage-img-2 { left: 20%; top: 80px; width: 80%; height: 320px; }
+
+  .about-difference { padding: 40px 20px; }
+  .about-culture-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .about-culture-card { height: auto; padding: 20px 0; }
+
+  .about-sustainability { height: auto; min-height: 500px; }
+  .about-sustainability-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+    padding: 48px 24px;
+  }
+  .about-sustainability-right { flex: none; width: 100%; }
+  .about-sust-title { font-size: 36px; }
+}
