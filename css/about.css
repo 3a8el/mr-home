@@ -359,13 +359,14 @@
 
 /* ── Left column ── */
 .about-sust-content-left {
-  flex: 0 0 30%;
-  width: 30%;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 0;        /* no padding pushing title right */
-  min-width: unset;  /* remove old min-width */
+  flex: 0 0 40%;
+  width: 40%;
+  display: grid;
+  grid-template-columns: auto 1fr; /* label left, title right */
+  align-items: start;              /* both align to top */
+  column-gap: 16px;
+  padding: 0;
+  min-width: unset;
 }
 
 .about-sust-label {
@@ -374,13 +375,15 @@
   letter-spacing: 0.1em;
   color: #888;
   text-transform: uppercase;
+  padding-top: 6px; /* nudge down to align with first line of title */
+  white-space: nowrap;
 }
 
 .about-sust-title {
   font-size: clamp(36px, 4vw, 52px);
   color: var(--gs-1100);
   line-height: 1.15;
-  margin: 0;         /* flush left, no extra margin */
+  margin: 0;
 }
 
 /* ── Right column ── */
@@ -442,7 +445,6 @@
   font-weight: 500;
   color: #555;
   line-height: 1.75;
-  max-width: 560px;
 }
 
 /* ── Mobile ── */
