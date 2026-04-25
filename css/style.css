@@ -71,6 +71,7 @@
     top: 52px;
     left: 64px;
     right: 64px;
+    width: calc(100% - 128px);
     display: flex;
     align-items: center;
     justify-content: space-between;

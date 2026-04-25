@@ -104,45 +104,45 @@ function startHeroAnimations() {
 }
 
   /* ═══════════════════════════════════════════════════════════
-     2. JOURNEY TITLE LINES — stagger slide in from left
+     2. HOME PAGE — journey + services animations
   ═══════════════════════════════════════════════════════════ */
-  gsap.from('.journey-title .line-1, .journey-title .line-2, .journey-title .line-3', {
-    opacity: 0, x: -40, duration: .8,
-    stagger: .15, ease: 'power3.out',
-    scrollTrigger: { trigger: '#about', start: 'top 75%' }
-  });
-  gsap.from('.journey-right', {
-    opacity: 0, x: 40, duration: .9,
-    ease: 'power3.out',
-    scrollTrigger: { trigger: '#about', start: 'top 70%' }
-  });
-  gsap.from('.services-header', {
-    opacity: 0, y: 20, duration: .6,
-    ease: 'power2.out',
-    scrollTrigger: { trigger: '.services-header', start: 'top 85%' }
-  });
-  /* ─── SERVICE CARDS — clip reveal + stagger + repeat ─── */
-  document.querySelectorAll('.service-card').forEach((card, i) => {
-    const delay = i * 0.15;
-
-    gsap.set(card, { clipPath: 'inset(100% 0% 0% 0%)' });
-
-    gsap.to(card, {
-      clipPath: 'inset(0% 0% 0% 0%)',
-      duration: 1.0, delay,
-      ease: 'expo.out',
-      scrollTrigger: {
-        trigger: card,
-        start: 'top 90%',
-        toggleActions: 'play reverse play reverse',
-      },
+  if (document.querySelector('#about')) {
+    gsap.from('.journey-title .line-1, .journey-title .line-2, .journey-title .line-3', {
+      opacity: 0, x: -40, duration: .8,
+      stagger: .15, ease: 'power3.out',
+      scrollTrigger: { trigger: '#about', start: 'top 75%' }
     });
-  });
+    gsap.from('.journey-right', {
+      opacity: 0, x: 40, duration: .9,
+      ease: 'power3.out',
+      scrollTrigger: { trigger: '#about', start: 'top 70%' }
+    });
+    gsap.from('.services-header', {
+      opacity: 0, y: 20, duration: .6,
+      ease: 'power2.out',
+      scrollTrigger: { trigger: '.services-header', start: 'top 85%' }
+    });
+    /* ─── SERVICE CARDS — clip reveal + stagger + repeat ─── */
+    document.querySelectorAll('.service-card').forEach((card, i) => {
+      const delay = i * 0.15;
+      gsap.set(card, { clipPath: 'inset(100% 0% 0% 0%)' });
+      gsap.to(card, {
+        clipPath: 'inset(0% 0% 0% 0%)',
+        duration: 1.0, delay,
+        ease: 'expo.out',
+        scrollTrigger: {
+          trigger: card,
+          start: 'top 90%',
+          toggleActions: 'play reverse play reverse',
+        },
+      });
+    });
+  }
 
   /* ═══════════════════════════════════════════════════════════
      3. PROJECT PANELS — expand from center with ScrollTrigger scrub
   ═══════════════════════════════════════════════════════════ */
-  const contents = [
+  if (document.querySelector('.project-track')) { const contents = [
     document.getElementById('content1'),
     document.getElementById('content2'),
     document.getElementById('content3'),
@@ -234,18 +234,21 @@ function startHeroAnimations() {
     pin: '.projects-sticky-container',
     pinSpacing: false,
   });
+  } // end if project-track
 
   /* ═══════════════════════════════════════════════════════════
-     4. CTA — staggered lines + slide in
+     4. CTA — staggered lines + slide in (only if present)
   ═══════════════════════════════════════════════════════════ */
-  gsap.from('.cta-title .line1, .cta-title .line2, .cta-title .line3', {
-    opacity:0, y:30, duration:.8, stagger:.18, ease:'power3.out',
-    scrollTrigger: { trigger: '.section-cta', start:'top 70%' }
-  });
-  gsap.from('.cta-right', {
-    opacity:0, x:40, duration:.9, ease:'power3.out',
-    scrollTrigger: { trigger: '.section-cta', start:'top 65%' }
-  });
+  if (document.querySelector('.section-cta')) {
+    gsap.from('.cta-title .line1, .cta-title .line2, .cta-title .line3', {
+      opacity:0, y:30, duration:.8, stagger:.18, ease:'power3.out',
+      scrollTrigger: { trigger: '.section-cta', start:'top 70%' }
+    });
+    gsap.from('.cta-right', {
+      opacity:0, x:40, duration:.9, ease:'power3.out',
+      scrollTrigger: { trigger: '.section-cta', start:'top 65%' }
+    });
+  }
 
   /* ═══════════════════════════════════════════════════════════
      5. FOOTER — fade up
