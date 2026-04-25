@@ -556,6 +556,9 @@
   padding: 8px 40px; /* ← explicit padding */
 }
 
+.cta-mobile-content {
+  display: none;
+}
   /* ─── FOOTER ─────────────────────────────────────────────── */
   footer {
     background: var(--gs-100);
@@ -752,21 +755,62 @@
     .journey-title .line-2b { display: block; text-align: right; }
     .journey-title .line-3 { display: inline-block; text-align: left; }
     .section-cta { padding: 24px 16px; }
-    .cta-card { padding: 44px 16px; }
+    .cta-card { padding: 44px 24px; }
+    .cta-side {
+    display: none;
+  }
     .services-grid { grid-template-columns: 1fr; border-radius: 0; }
     .service-card { height: 380px; aspect-ratio: unset; }
-    .cta-inner { flex-direction: column; gap: 32px; }
+    .cta-inner { justify-content: flex-start; }
     .cta-left { width: 100%; }
     .cta-right { max-width: 100%; width: 100%; margin-left: 0; }
-    .cta-title { font-size: 36px; line-height: 1.3; width: 100%; }
-    .cta-title .line1 { display: inline-block; float: right; clear: both; position: relative; }
+    .cta-title {
+    font-size: 48px;
+    width: 100%;
+  }
+    .cta-title-block {
+    width: 100%;
+    align-items: flex-start;
+  }
+    .cta-title .line1 {
+    display: block;
+    text-align: center;
+    margin-bottom: 0;
+  }
     .cta-title .line1::before { display: block; left: -8px; top: 0; width: calc(100% + 16px); height: 100%; }
     .cta-title .line1::after { display: block; left: -8px; }
     .cta-bracket-right { display: block; }
     .cta-bracket-dot { display: block; }
     .cta-bracket-dot-bl { display: block; }
-    .cta-title .line2 { display: block; text-align: left; }
-    .cta-title .line3 { display: block; text-align: right; }
+    .cta-title .line2 {
+    display: block;
+    text-align: left;
+  }
+     .cta-title .line3 {
+    display: block;
+    text-align: right;
+    letter-spacing: 0.04em;
+  }
+  /* hide button from line3 */
+  .cta-btn {
+    display: none;
+  }
+   .cta-mobile-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 16px 0;
+  }
+   .cta-mobile-content .cta-text {
+    text-align: center;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+  .cta-mobile-content .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 40px;
+  }
     .cta-right .btn { width: 100% !important; justify-content: center; box-sizing: border-box; }
     .cta-text { text-align: center; }
     footer { padding: 40px 24px 0; gap: 48px; }
