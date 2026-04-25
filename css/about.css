@@ -465,7 +465,8 @@
 /* ── Mobile ── */
 @media (max-width: 900px) {
   .about-sustainability { padding: 0 0 60px; }
-  .about-sust-images { height: 260px; }
+  .about-sust-images { height: 596px; }
+  .about-sust-images {border-radius: 0;}
   .about-sust-content {
     flex-direction: column;
     gap: 24px;
@@ -473,9 +474,18 @@
     padding: 28px 24px;
   }
   .about-sust-content-left {
-    flex: none;
+    display: flex;           /* ← override the desktop grid */
+    flex-direction: column;
     width: 100%;
+    flex: none;
+    gap: 8px;
   }
+
+  .about-sust-label {
+    padding-top: 0;         /* remove desktop nudge */
+    white-space: normal;
+  }
+
   .about-sust-title { font-size: 36px; }
   .about-sust-subtitle { white-space: normal; }
 }
@@ -547,7 +557,6 @@
   .about-culture-card { height: auto; padding: 20px 0; }
 
   /* ─── SUSTAINABILITY ─── */
-  .about-sust-images { height: 260px; }
   .about-sust-content {
     flex-direction: column;
     gap: 24px;
@@ -559,6 +568,18 @@
     width: 100%;
     grid-template-columns: auto 1fr;
   }
+.about-sust-title-cont {
+  font-size: 36px;
+  grid-column: unset;     /* remove desktop grid-column */
+}
+
+.about-sust-subtitle-wrap {
+  display: inline-flex;
+  width: auto;
+  white-space: normal;    /* allow wrapping */
+  align-self: flex-start; /* don't stretch */
+}
+
   .about-sust-title { font-size: 36px; }
   .about-sust-title-cont { font-size: 36px; }
   .about-sust-subtitle { white-space: normal; }
