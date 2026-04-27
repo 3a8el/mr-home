@@ -40,11 +40,8 @@
 
   function init() {
     measure();
-    const vw = window.innerWidth;
-    const mid = Math.floor(CARD_COUNT / 2);
-    const offset = vw / 2 - mid * STEP - dims.w / 2;
     cards.forEach((_, i) => {
-      positions[i] = offset + i * STEP;
+      positions[i] = i * STEP;
     });
   }
 
@@ -58,7 +55,7 @@
       const dist = Math.abs(cardCenter - center);
       const norm = Math.min(dist / maxDist, 1);
 
-      const scale = gsap.utils.interpolate(1.1, 0.78, norm);
+      const scale = gsap.utils.interpolate(1.08, 1.0, norm);
       const opacity = gsap.utils.interpolate(1, 0.1, norm);
 
       gsap.set(card, {
