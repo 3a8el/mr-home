@@ -107,7 +107,7 @@
 .ph-meta {
   position: relative;
   background: #fff;
-  padding: 56px 48px;
+  padding: 86px 48px 56px; /* 48px bar-top + 2px bar + 36px gap = 86px */
   overflow: hidden;
 }
 
@@ -174,7 +174,7 @@
 
   .ph-meta-bar {
     top: 32px;
-    left: 0;
+    left: 28px;
     right: auto;
     bottom: 0;
     width: 2px;
