@@ -128,7 +128,7 @@
 .pci {
   position: relative;
   width: 100%;
-  height: 420px;
+  height: 100vh;
   overflow: hidden;
 }
 
@@ -209,26 +209,7 @@
   justify-content: center;
 }
 
-.btn-load-more {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 16px 48px;
-  background: var(--yellow-600);
-  color: var(--gs-1200);
-  font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  border: none;
-  cursor: pointer;
-  transition: opacity 0.2s;
-}
-
-.btn-load-more:hover {
-  opacity: 0.85;
-}
+/* inherits all styling from global .btn */
 
 /* ─── MOBILE ─────────────────────────────────────────────── */
 @media (max-width: 900px) {
@@ -247,12 +228,8 @@
 
   /* grid */
   .projects-grid {
-    padding: 0;
+    padding: 0 28px;
     gap: 32px;
-  }
-
-  .pci {
-    height: 320px;
   }
 
   .pci-name {
@@ -260,7 +237,7 @@
   }
 
   .projects-load-more-wrap {
-    padding: 0 16px 60px;
+    padding: 0 0 60px;
   }
 
   .btn-load-more {
