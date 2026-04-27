@@ -1,4 +1,47 @@
 /* ═══════════════════════════════════════════════════════════
+   PROJECT CARD CURSOR — yellow VIEW circle
+═══════════════════════════════════════════════════════════ */
+(function () {
+  if (!window.matchMedia('(pointer: fine)').matches) return;
+
+  const dot  = document.getElementById('cursorDot');
+  const ring = document.getElementById('cursorRing');
+  if (!dot || !ring) return;
+
+  const view = document.createElement('div');
+  view.className = 'cursor-view';
+  view.innerHTML = '<span>VIEW</span>';
+  document.body.appendChild(view);
+  gsap.set(view, { scale: 0, opacity: 0 });
+
+  let mx = 0, my = 0, vx = 0, vy = 0;
+  let active = false;
+
+  window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
+  gsap.ticker.add(() => {
+    vx += (mx - vx) * 0.12;
+    vy += (my - vy) * 0.12;
+    gsap.set(view, { x: vx - 40, y: vy - 40 });
+  });
+
+  document.querySelectorAll('.pci').forEach(card => {
+    card.addEventListener('mouseenter', () => {
+      if (active) return;
+      active = true;
+      gsap.to(view, { scale: 1, opacity: 1, duration: 0.4, ease: 'back.out(1.5)' });
+      gsap.to([dot, ring], { opacity: 0, duration: 0.2 });
+    });
+    card.addEventListener('mouseleave', () => {
+      if (!active) return;
+      active = false;
+      gsap.to(view, { scale: 0, opacity: 0, duration: 0.3, ease: 'power2.in' });
+      gsap.to([dot, ring], { opacity: 1, duration: 0.3 });
+    });
+  });
+})();
+
+/* ═══════════════════════════════════════════════════════════
    PROJECTS PAGE
 ═══════════════════════════════════════════════════════════ */
 (function () {

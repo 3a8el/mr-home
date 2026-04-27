@@ -2,6 +2,32 @@
    PROJECTS PAGE STYLES
 ═══════════════════════════════════════════════════════════ */
 
+/* ─── PROJECT CARD CURSOR ───────────────────────────────── */
+.cursor-view {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: var(--yellow-600);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 9999;
+  will-change: transform, opacity;
+}
+
+.cursor-view span {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: #000;
+  text-transform: uppercase;
+}
+
 /* ─── HERO ──────────────────────────────────────────────── */
 .projects-hero {
   position: relative;
