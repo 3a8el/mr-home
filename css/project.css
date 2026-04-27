@@ -1,0 +1,121 @@
+/* ═══════════════════════════════════════════════════════════
+   PROJECT SINGLE PAGE STYLES
+═══════════════════════════════════════════════════════════ */
+
+/* ─── LOADER ─────────────────────────────────────────────── */
+.ph-loader {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  pointer-events: none;
+}
+
+/* ─── HERO ───────────────────────────────────────────────── */
+.ph-hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: #000;
+}
+
+.ph-img-wrap {
+  position: absolute;
+  inset: 0;
+}
+
+.ph-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* bottom gradient scrim */
+.ph-hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 55%;
+  background: linear-gradient(to top, rgba(0,0,0,0.72) 0%, transparent 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.ph-hero .navbar {
+  position: absolute;
+  z-index: 10;
+}
+
+/* ─── HERO CONTENT ───────────────────────────────────────── */
+.ph-hero-content {
+  position: absolute;
+  bottom: 48px;
+  left: 48px;
+  z-index: 5;
+  perspective: 800px;
+}
+
+/* sub heading — sits above the title */
+.ph-sub {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 8px;
+  margin-bottom: 12px;
+  perspective: 600px;
+}
+
+.ph-sub-word {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+/* main project title */
+.ph-title {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.28em;
+  font-family: var(--font-body);
+  font-size: clamp(40px, 5.5vw, 72px);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.1;
+  margin: 0;
+}
+
+/* ─── ANIMATION HELPERS (same as projects hero) ──────────── */
+.ph-plw {
+  display: inline-block;
+  overflow: hidden;
+  line-height: 1.2;
+}
+
+.ph-pl {
+  display: inline-block;
+  transform-origin: center bottom;
+}
+
+/* ─── MOBILE ─────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .ph-hero-content {
+    bottom: 32px;
+    left: 24px;
+    right: 24px;
+  }
+
+  .ph-title {
+    font-size: clamp(32px, 8vw, 48px);
+  }
+
+  .ph-sub {
+    margin-bottom: 8px;
+  }
+}
