@@ -1,7 +1,7 @@
 Mr. Home Website — Project Summary
 Project Overview
 Building a luxury interior design portfolio website for Mr. Home brand — a specialized manufacturer of custom Kitchens, Dressing Rooms, and Architectural Woodwork based in Abu Dhabi, UAE.
-Live URL: https://transcendent-stardust-745f38.netlify.app
+Live URL: https://mr-home.vercel.app/
 GitHub: https://github.com/3a8el/mr-home
 Figma: https://www.figma.com/design/Dimv5tb7vs745nI2L0poAD/Mr.-Home
 
@@ -11,7 +11,7 @@ Pure HTML / CSS / Vanilla JS — no framework
 GSAP + ScrollTrigger — all animations
 Lenis (@studio-freight/lenis@1.0.42) — smooth scroll
 Google Fonts — Montserrat
-Hosted on Netlify, connected to GitHub (auto-deploy on push)
+Hosted on Vercel, connected to GitHub (auto-deploy on push)
 
 
 Project Structure
@@ -128,7 +128,7 @@ bash# After any change, in VS Code terminal (D:\mr-home):
 git add .
 git commit -m "description"
 git push
-# Netlify auto-redeploys in ~30 seconds
+# Vercel auto-redeploys in ~30 seconds
 Important Notes
 
 Nav SVG arrow path: M6.69937 9.67397L7.67848 6.01985L8.28354 3.78451C8.53671 2.83968 7.97421 1.8654 7.02938 1.61223L1.1327 0.0322193C0.358619 -0.175195 -0.274373 0.661765 0.121461 1.34737L2.45896 5.39604L5.05479 9.89215C5.45479 10.585 6.49195 10.4481 6.69937 9.67397Z
