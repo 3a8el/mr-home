@@ -181,11 +181,9 @@
     tl.to(out.querySelector('img'), { scale: 1.15, duration: 0.9, ease: 'power2.inOut' }, 0)
       .to(out, { opacity: 0, duration: 0.65, ease: 'power2.in' }, 0);
 
-    /* phase 1: incoming fades in — image stays at 1.1 */
-    tl.to(inn, { opacity: 1, duration: 0.75, ease: 'power2.out' }, 0.18);
-
-    /* phase 2: after fade completes, scale back to 1 */
-    tl.to(inn.querySelector('img'), { scale: 1, duration: 0.7, ease: 'power2.inOut' }, 0.93);
+    /* incoming: fades in while simultaneously scaling back to 1 */
+    tl.to(inn, { opacity: 1, duration: 0.75, ease: 'power2.out' }, 0.18)
+      .to(inn.querySelector('img'), { scale: 1, duration: 0.75, ease: 'power2.out' }, 0.18);
   }
 
 })();
