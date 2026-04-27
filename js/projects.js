@@ -18,9 +18,14 @@
   }
 
   /* ─── INFINITE CAROUSEL ───────────────────────────────── */
-  const cards = Array.from(document.querySelectorAll('.projects-card'));
-  if (!cards.length) return;
+  // Clone the 5 cards → 10 so the loop always has cards entering from the right
+  const carouselWrap = document.querySelector('.projects-carousel-wrap');
+  if (!carouselWrap) return;
 
+  const origCards = Array.from(carouselWrap.querySelectorAll('.projects-card'));
+  origCards.forEach(card => carouselWrap.appendChild(card.cloneNode(true)));
+
+  const cards = Array.from(carouselWrap.querySelectorAll('.projects-card')); // 10
   const CARD_COUNT = cards.length;
   const SPEED = 0.9;
   const GAP_D = 40;
@@ -35,7 +40,7 @@
     dims.h = cards[0].offsetHeight;
     dims.gap = window.innerWidth > 900 ? GAP_D : GAP_M;
     STEP = dims.w + dims.gap;
-    TOTAL = CARD_COUNT * STEP;
+    TOTAL = CARD_COUNT * STEP; // 10 × 320 = 3200px — always > any viewport
   }
 
   function init() {
@@ -63,7 +68,7 @@
         y: '-50%',
         scale,
         opacity,
-        rotation: 10,
+        rotation: 0,
         transformOrigin: 'center center'
       });
     });
@@ -75,7 +80,7 @@
   gsap.ticker.add(() => {
     cards.forEach((_, i) => {
       positions[i] -= SPEED;
-      /* when card is fully off-screen left, wrap it to the right */
+      /* when fully off-screen left, jump to right end of the stream */
       if (positions[i] + dims.w < 0) {
         positions[i] += TOTAL;
       }

@@ -18,32 +18,35 @@
   z-index: 20;
 }
 
+/* 50vw gradient fades on left and right — sit above carousel, below title */
+.projects-hero::before,
+.projects-hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50vw;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.projects-hero::before {
+  left: 0;
+  background: linear-gradient(to right, #000 30%, transparent 100%);
+}
+
+.projects-hero::after {
+  right: 0;
+  background: linear-gradient(to left, #000 30%, transparent 100%);
+}
+
 /* ─── CAROUSEL ───────────────────────────────────────────── */
 .projects-carousel-wrap {
   position: absolute;
   inset: 0;
   pointer-events: none;
-}
-
-.projects-carousel-wrap::before,
-.projects-carousel-wrap::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 220px;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.projects-carousel-wrap::before {
-  left: 0;
-  background: linear-gradient(to right, #000 0%, transparent 100%);
-}
-
-.projects-carousel-wrap::after {
-  right: 0;
-  background: linear-gradient(to left, #000 0%, transparent 100%);
+  transform: rotate(-10deg);
+  transform-origin: center center;
 }
 
 .projects-card {
@@ -110,6 +113,10 @@
 
 /* ─── MOBILE ─────────────────────────────────────────────── */
 @media (max-width: 900px) {
+  .projects-carousel-wrap {
+    transform: rotate(-6deg);
+  }
+
   .projects-card {
     width: 160px;
     height: 240px;
