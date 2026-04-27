@@ -73,3 +73,49 @@
     heroImg.addEventListener('error', () => { imgReady = true; maybeStart(); });
   }
 })();
+
+/* ═══════════════════════════════════════════════════════════
+   META SECTION — growing bar + staggered text reveals
+═══════════════════════════════════════════════════════════ */
+(function () {
+  const meta = document.querySelector('.ph-meta');
+  if (!meta) return;
+
+  const bar   = meta.querySelector('.ph-meta-bar');
+  const items = Array.from(meta.querySelectorAll('.ph-meta-item'));
+  const N     = items.length;
+  const BAR_DUR = 2.2;
+  const mobile  = () => window.innerWidth <= 900;
+
+  /* hide all text initially */
+  items.forEach(item => {
+    gsap.set(item.querySelectorAll('.ph-meta-label .ph-pl'), { rotateX: -90, y: '110%' });
+    gsap.set(item.querySelectorAll('.ph-meta-value .ph-pl'), { rotateX: -90, y: '110%' });
+  });
+  gsap.set(bar, mobile() ? { scaleY: 0 } : { scaleX: 0 });
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: meta,
+      start: 'top 75%',
+    }
+  });
+
+  /* bar grows — linear so timing maps cleanly to column positions */
+  tl.to(bar, mobile()
+    ? { scaleY: 1, duration: BAR_DUR, ease: 'none' }
+    : { scaleX: 1, duration: BAR_DUR, ease: 'none' }
+  , 0);
+
+  /* each item fires as bar tip reaches its column / row */
+  items.forEach((item, i) => {
+    const arrival = (BAR_DUR / N) * (i + 1) - 0.12;
+    const labels  = item.querySelectorAll('.ph-meta-label .ph-pl');
+    const values  = item.querySelectorAll('.ph-meta-value .ph-pl');
+
+    /* sub heading first */
+    tl.to(labels, { rotateX: 0, y: '0%', duration: 0.5, ease: 'power3.out' }, arrival);
+    /* heading 0.2s after sub heading */
+    tl.to(values, { rotateX: 0, y: '0%', duration: 0.5, ease: 'power3.out' }, arrival + 0.2);
+  });
+})();
