@@ -113,7 +113,7 @@
 
 .ph-meta-bar {
   position: absolute;
-  top: 0;
+  top: 48px;
   left: 0;
   right: 0;
   height: 2px;
@@ -173,7 +173,7 @@
   }
 
   .ph-meta-bar {
-    top: 0;
+    top: 32px;
     left: 0;
     right: auto;
     bottom: 0;
