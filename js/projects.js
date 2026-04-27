@@ -29,14 +29,16 @@
     card.addEventListener('mouseenter', () => {
       if (active) return;
       active = true;
+      gsap.killTweensOf([dot, ring]);
       gsap.to(view, { scale: 1, opacity: 1, duration: 0.4, ease: 'back.out(1.5)' });
-      gsap.to([dot, ring], { opacity: 0, duration: 0.2 });
+      gsap.to([dot, ring], { opacity: 0, duration: 0.15, overwrite: true });
     });
     card.addEventListener('mouseleave', () => {
       if (!active) return;
       active = false;
       gsap.to(view, { scale: 0, opacity: 0, duration: 0.3, ease: 'power2.in' });
-      gsap.to([dot, ring], { opacity: 1, duration: 0.3 });
+      gsap.killTweensOf([dot, ring]);
+      gsap.to([dot, ring], { opacity: 1, duration: 0.3, overwrite: true });
     });
   });
 })();
