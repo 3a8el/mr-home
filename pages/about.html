@@ -10,6 +10,11 @@
 </head>
 <body>
 
+<!-- curtain in HTML so it covers the page on first paint, before JS runs -->
+<div class="curtain" style="transform:scaleY(1);transform-origin:top center;">
+  <div class="curtain-logo">MR<span>•</span>HOME</div>
+</div>
+
 <div class="cursor-dot" id="cursorDot"></div>
 <div class="cursor-ring" id="cursorRing"></div>
 

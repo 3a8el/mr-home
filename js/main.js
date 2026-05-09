@@ -444,11 +444,15 @@ function startHeroAnimations() {
    PAGE TRANSITIONS — curtain wipe
 ═══════════════════════════════════════════════════════════ */
 (function() {
-  // Inject curtain element
-  const curtain = document.createElement('div');
-  curtain.className = 'curtain';
-  curtain.innerHTML = '<div class="curtain-logo">MR<span>•</span>HOME</div>';
-  document.body.appendChild(curtain);
+  // Reuse curtain if already in HTML (non-home pages inject it for instant coverage),
+  // otherwise create it (home page — preloader handles the initial cover).
+  let curtain = document.querySelector('.curtain');
+  if (!curtain) {
+    curtain = document.createElement('div');
+    curtain.className = 'curtain';
+    curtain.innerHTML = '<div class="curtain-logo">MR<span>•</span>HOME</div>';
+    document.body.appendChild(curtain);
+  }
 
   const curtainLogo = curtain.querySelector('.curtain-logo');
 
