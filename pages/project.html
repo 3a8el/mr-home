@@ -66,23 +66,10 @@
     <img src="https://picsum.photos/seed/pjsingle/1600/900" alt="Project Hero" />
   </div>
 
-  <!-- Hero text — title first, sub heading 0.5s after -->
+  <!-- Hero text — populated from JSON by project.js -->
   <div class="ph-hero-content">
-
-    <p class="ph-sub">
-      <span class="ph-plw"><span class="ph-pl ph-sub-word">Kitchen</span></span>
-      <span class="ph-plw"><span class="ph-pl ph-sub-word">Renovation</span></span>
-      <span class="ph-plw"><span class="ph-pl ph-sub-word">·</span></span>
-      <span class="ph-plw"><span class="ph-pl ph-sub-word">December 2025</span></span>
-    </p>
-
-    <h1 class="ph-title">
-      <span class="ph-plw"><span class="ph-pl">Name</span></span>
-      <span class="ph-plw"><span class="ph-pl">of</span></span>
-      <span class="ph-plw"><span class="ph-pl">the</span></span>
-      <span class="ph-plw"><span class="ph-pl">Project</span></span>
-    </h1>
-
+    <p class="ph-sub" id="phSub"></p>
+    <h1 class="ph-title" id="phTitle"></h1>
   </div>
 
 </section>
@@ -92,39 +79,39 @@
   <div class="ph-meta-bar"></div>
   <div class="ph-meta-grid">
 
-    <div class="ph-meta-item">
+    <div class="ph-meta-item" data-field="client">
       <div class="ph-meta-label">
         <span class="ph-plw"><span class="ph-pl">Client</span></span>
       </div>
       <div class="ph-meta-value">
-        <span class="ph-plw"><span class="ph-pl">Design Lab</span></span>
+        <span class="ph-plw"><span class="ph-pl"></span></span>
       </div>
     </div>
 
-    <div class="ph-meta-item">
+    <div class="ph-meta-item" data-field="date">
       <div class="ph-meta-label">
         <span class="ph-plw"><span class="ph-pl">Date</span></span>
       </div>
       <div class="ph-meta-value">
-        <span class="ph-plw"><span class="ph-pl">October 31, 2025</span></span>
+        <span class="ph-plw"><span class="ph-pl"></span></span>
       </div>
     </div>
 
-    <div class="ph-meta-item">
+    <div class="ph-meta-item" data-field="location">
       <div class="ph-meta-label">
         <span class="ph-plw"><span class="ph-pl">Location</span></span>
       </div>
       <div class="ph-meta-value">
-        <span class="ph-plw"><span class="ph-pl">New Giza, Cairo</span></span>
+        <span class="ph-plw"><span class="ph-pl"></span></span>
       </div>
     </div>
 
-    <div class="ph-meta-item">
+    <div class="ph-meta-item" data-field="service">
       <div class="ph-meta-label">
         <span class="ph-plw"><span class="ph-pl">Service</span></span>
       </div>
       <div class="ph-meta-value">
-        <span class="ph-plw"><span class="ph-pl">Kitchen Renovation</span></span>
+        <span class="ph-plw"><span class="ph-pl"></span></span>
       </div>
     </div>
 
