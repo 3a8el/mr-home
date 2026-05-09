@@ -92,15 +92,24 @@ gsap.registerPlugin(ScrollTrigger);
 })();
 
 /* ═══════════════════════════════════════════════════════════
-   1. HERO — fires after preloader exits
+   1. HERO — pre-hide elements, then reveal after preloader exits
 ═══════════════════════════════════════════════════════════ */
+if (document.getElementById('preloader')) {
+  gsap.set('.logo-wrap',    { opacity:0, y:20 });
+  gsap.set('.nav-links',    { opacity:0, y:-20 });
+  gsap.set('.hero-title',   { opacity:0, y:40 });
+  gsap.set('.hero-sub',     { opacity:0, y:30 });
+  gsap.set('.avatar-row',   { opacity:0, y:20 });
+  gsap.set('.scroll-widget',{ opacity:0, scale:.8 });
+}
+
 function startHeroAnimations() {
-  gsap.from('.logo-wrap',    { opacity:0, y:20,  duration:.8, delay:.05, ease:'power3.out' });
-  gsap.from('.nav-links',    { opacity:0, y:-20, duration:.8, delay:.15, ease:'power3.out' });
-  gsap.from('.hero-title',   { opacity:0, y:40,  duration:.9, delay:.3,  ease:'power3.out' });
-  gsap.from('.hero-sub',     { opacity:0, y:30,  duration:.8, delay:.5,  ease:'power3.out' });
-  gsap.from('.avatar-row',   { opacity:0, y:20,  duration:.7, delay:.65, ease:'power3.out' });
-  gsap.from('.scroll-widget',{ opacity:0, scale:.8, duration:.6, delay:.78, ease:'back.out(1.7)' });
+  gsap.to('.logo-wrap',    { opacity:1, y:0,    duration:.8, delay:.05, ease:'power3.out' });
+  gsap.to('.nav-links',    { opacity:1, y:0,    duration:.8, delay:.15, ease:'power3.out' });
+  gsap.to('.hero-title',   { opacity:1, y:0,    duration:.9, delay:.3,  ease:'power3.out' });
+  gsap.to('.hero-sub',     { opacity:1, y:0,    duration:.8, delay:.5,  ease:'power3.out' });
+  gsap.to('.avatar-row',   { opacity:1, y:0,    duration:.7, delay:.65, ease:'power3.out' });
+  gsap.to('.scroll-widget',{ opacity:1, scale:1, duration:.6, delay:.78, ease:'back.out(1.7)' });
 }
 
   /* ═══════════════════════════════════════════════════════════
