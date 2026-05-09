@@ -151,7 +151,7 @@
   }
   .hero-bg {
     position: absolute; inset: 0;
-    background: url('https://www.figma.com/api/mcp/asset/7eb00f4a-ddaf-4797-bc0f-cc5e2470e2f7') center/cover no-repeat;
+    background: url('/assets/images/Mr-home-hero.webp') center/cover no-repeat;
   }
   .hero-overlay {
     position: absolute; inset: 0;
