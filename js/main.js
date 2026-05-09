@@ -92,52 +92,50 @@ gsap.registerPlugin(ScrollTrigger);
 })();
 
 /* ═══════════════════════════════════════════════════════════
-   1. HERO — pre-hide, then reveal after preloader exits
+   1. HERO — pre-hide, then reveal after preloader / curtain
 ═══════════════════════════════════════════════════════════ */
-if (document.getElementById('preloader')) {
+
+/* project.html has its own navbar animation — skip on that page */
+const isProjectPage = !!document.querySelector('.ph-hero');
+
+if (!isProjectPage) {
   gsap.set('.logo-wrap',    { transformPerspective: 600, rotateX: -90, opacity: 0, transformOrigin: 'top center' });
   gsap.set('.nav-top-line', { scaleX: 0, transformOrigin: 'left center' });
   gsap.set('.nav-link',     { transformPerspective: 400, rotateX: -90, opacity: 0, transformOrigin: 'top center' });
   gsap.set('.hamburger',    { opacity: 0 });
+}
+
+if (document.getElementById('preloader')) {
   gsap.set('.hero-title',   { opacity: 0, y: 36 });
   gsap.set('.hero-sub',     { opacity: 0, y: 28 });
   gsap.set('.avatar-row',   { opacity: 0, y: 22 });
   gsap.set('.scroll-widget',{ opacity: 0, y: 14 });
 }
 
-function startHeroAnimations() {
+/* shared navbar entrance — runs on all pages (except project.html) */
+function startNavAnimation() {
   const tl = gsap.timeline();
   const LINE_START = 0.1;
   const LINE_DUR   = 0.85;
   const navLinks   = gsap.utils.toArray('.nav-link');
 
-  /* logo flips down */
-  tl.to('.logo-wrap', {
-    rotateX: 0, opacity: 1,
-    duration: 0.65, ease: 'power3.out',
-  }, 0);
+  tl.to('.logo-wrap',    { rotateX: 0, opacity: 1, duration: 0.65, ease: 'power3.out' }, 0);
+  tl.to('.nav-top-line', { scaleX: 1,  duration: LINE_DUR, ease: 'power3.out' }, LINE_START);
 
-  /* nav line grows left → right */
-  tl.to('.nav-top-line', {
-    scaleX: 1,
-    duration: LINE_DUR, ease: 'power3.out',
-  }, LINE_START);
-
-  /* each link flips down as line reaches its position */
   navLinks.forEach((link, i) => {
     const t = LINE_START + LINE_DUR * (i / navLinks.length);
-    tl.to(link, {
-      rotateX: 0, opacity: 1,
-      duration: 0.55, ease: 'power3.out',
-    }, t);
+    tl.to(link, { rotateX: 0, opacity: 1, duration: 0.55, ease: 'power3.out' }, t);
   });
 
-  /* hamburger (mobile) */
   tl.to('.hamburger', { opacity: 1, duration: 0.4, ease: 'power2.out' }, 0.25);
+}
 
-  /* hero content fades up with stagger */
-  tl.to('.hero-title',    { opacity: 1, y: 0, duration: 0.8, ease: 'power3.out' }, 0.6);
-  tl.to('.hero-sub',      { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, 0.78);
+/* home page hero content — called after preloader exits */
+function startHeroAnimations() {
+  startNavAnimation();
+  const tl = gsap.timeline();
+  tl.to('.hero-title',    { opacity: 1, y: 0, duration: 0.8,  ease: 'power3.out' }, 0.6);
+  tl.to('.hero-sub',      { opacity: 1, y: 0, duration: 0.7,  ease: 'power3.out' }, 0.78);
   tl.to('.avatar-row',    { opacity: 1, y: 0, duration: 0.65, ease: 'power3.out' }, 0.94);
   tl.to('.scroll-widget', { opacity: 1, y: 0, duration: 0.5,  ease: 'power2.out' }, 1.08);
 }
@@ -497,7 +495,6 @@ function startHeroAnimations() {
 
   // ENTER animation — runs on every page load (curtain slides OUT)
   function curtainEnter() {
-    // Start curtain covering the page, then reveal
     gsap.set(curtain, { scaleY: 1, transformOrigin: 'top', pointerEvents: 'none' });
     gsap.to(curtainLogo, { opacity: 0, duration: 0 });
     gsap.to(curtain, {
@@ -506,6 +503,9 @@ function startHeroAnimations() {
       ease: 'power4.inOut',
       transformOrigin: 'top',
       delay: .1,
+      onComplete() {
+        if (!isProjectPage) startNavAnimation();
+      }
     });
   }
 
