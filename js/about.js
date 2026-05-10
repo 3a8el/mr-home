@@ -83,8 +83,7 @@ gsap.to('.about-grid-img', {
   /* ── Title: word color wash (yellow → dark) ── */
   const ajTitleEl    = document.querySelector('.about-journey-title');
   const ajTitleWords = ajTitleEl ? splitWordsDeep(ajTitleEl, 'aj-title-word') : [];
-  if (ajTitleWords.length) gsap.set(ajTitleWords, { color: '#252525' }); // start dark, set yellow below
-  if (ajTitleWords.length) gsap.set(ajTitleWords, { color: '#E9C91C' });
+  if (ajTitleWords.length) gsap.set(ajTitleWords, { color: '#E9C91C', opacity: 0 });
 
   /* highlight starts collapsed */
   gsap.set('.aj-highlight-box', { scaleX: 0, transformOrigin: 'left center' });
@@ -92,7 +91,7 @@ gsap.to('.about-grid-img', {
 
   if (ajTitleWords.length) {
     gsap.to(ajTitleWords, {
-      color: '#252525', duration: 0.4,
+      color: '#252525', opacity: 1, duration: 0.4,
       stagger: { each: 0.06, from: 'start' },
       ease: 'power2.out',
       scrollTrigger: { trigger: '.about-journey', start: 'top 75%', once: true }
@@ -163,14 +162,14 @@ gsap.to('.about-grid-img', {
 (function() {
   const adTitleEl    = document.querySelector('.about-difference-title');
   const adTitleWords = adTitleEl ? splitWordsDeep(adTitleEl, 'ad-title-word') : [];
-  if (adTitleWords.length) gsap.set(adTitleWords, { color: '#E9C91C' });
+  if (adTitleWords.length) gsap.set(adTitleWords, { color: '#E9C91C', opacity: 0 });
 
   gsap.set('.ad-highlight-box', { scaleX: 0, transformOrigin: 'left center' });
   gsap.set('.ad-dot-tr, .ad-dot-bl', { opacity: 0 });
 
   if (adTitleWords.length) {
     gsap.to(adTitleWords, {
-      color: '#252525', duration: 0.4,
+      color: '#252525', opacity: 1, duration: 0.4,
       stagger: { each: 0.06, from: 'start' },
       ease: 'power2.out',
       scrollTrigger: { trigger: '.about-difference', start: 'top 75%', once: true }
