@@ -214,14 +214,70 @@ gsap.to('.about-culture-card', {
 });
 
 // Sustainability
-gsap.from('.about-sust-title', {
-  opacity: 0, x: -40, duration: .9, ease: 'power3.out',
-  scrollTrigger: { trigger: '.about-sustainability', start: 'top 70%' }
-});
-gsap.from('.about-sustainability-right', {
-  opacity: 0, x: 40, duration: .9, ease: 'power3.out',
-  scrollTrigger: { trigger: '.about-sustainability', start: 'top 65%' }
-});
+(function() {
+  // "From Nature" + "to Nurture" — spotlight clip-path reveal from center outward
+  gsap.set('.about-sust-title, .about-sust-title-cont', { clipPath: 'inset(0 50% 0 50%)' });
+  gsap.to('.about-sust-title', {
+    clipPath: 'inset(0 0% 0 0%)',
+    duration: 0.9, ease: 'power2.inOut',
+    scrollTrigger: { trigger: '.about-sust-content', start: 'top 80%', once: true }
+  });
+  gsap.to('.about-sust-title-cont', {
+    clipPath: 'inset(0 0% 0 0%)',
+    duration: 0.9, ease: 'power2.inOut',
+    delay: 0.25,
+    scrollTrigger: { trigger: '.about-sust-content', start: 'top 80%', once: true }
+  });
+
+  // "Sustainable Elegance in Wood" — word color wash (invisible → yellow → dark)
+  const asSubEl    = document.querySelector('.about-sust-subtitle');
+  const asSubWords = asSubEl ? splitWords(asSubEl) : [];
+  if (asSubWords.length) gsap.set(asSubWords, { color: '#E9C91C', opacity: 0 });
+
+  // Highlight box + dots — hidden until after para ends
+  gsap.set('.as-highlight-box', { scaleX: 0, transformOrigin: 'left center' });
+  gsap.set('.as-dot-tr, .as-dot-bl', { opacity: 0 });
+
+  // "At Mr. Home..." — word-by-word build
+  const asDescEl = document.querySelector('.about-sust-desc');
+  if (asDescEl) {
+    asDescEl.innerHTML = asDescEl.textContent.trim()
+      .split(/\s+/)
+      .map(w => `<span class="asd-word" style="display:inline-block;">${w}</span>`)
+      .join(' ');
+  }
+
+  // Subtitle color wash (starts on scroll trigger)
+  if (asSubWords.length) {
+    gsap.to(asSubWords, {
+      color: '#252525', opacity: 1, duration: 0.4,
+      stagger: { each: 0.06, from: 'start' },
+      ease: 'power2.out',
+      scrollTrigger: { trigger: '.about-sust-content', start: 'top 80%', once: true }
+    });
+  }
+
+  // Para word-by-word — delay 0.3s → ~32 words × 0.015 + 0.28 ≈ ends at 1.06s
+  gsap.from('.asd-word', {
+    opacity: 0, y: 14, duration: 0.28,
+    stagger: { each: 0.015, from: 'start' },
+    ease: 'power2.out',
+    delay: 0.3,
+    scrollTrigger: { trigger: '.about-sust-content', start: 'top 80%', once: true }
+  });
+
+  // Highlight box grows after para ends (~1.06s), dots follow
+  gsap.to('.as-highlight-box', {
+    scaleX: 1, duration: 0.65, ease: 'power3.inOut',
+    delay: 1.1,
+    scrollTrigger: { trigger: '.about-sust-content', start: 'top 80%' }
+  });
+  gsap.to('.as-dot-tr, .as-dot-bl', {
+    opacity: 1, duration: 0.3, ease: 'power2.out',
+    delay: 1.8,
+    scrollTrigger: { trigger: '.about-sust-content', start: 'top 80%' }
+  });
+})();
 
 // CTA
 gsap.from('.cta-left', {

@@ -451,35 +451,40 @@
   display: inline-flex;
   align-items: center;
   padding: 5px 12px;
-  background: rgba(233, 201, 28, 0.15);
-  border-left: 2px solid var(--yellow-600);
-  border-right: 2px solid var(--yellow-600);
+  isolation: isolate;
 }
 
-/* top-right dot */
-.about-sust-subtitle-wrap::before {
+.as-highlight-box {
+  position: absolute;
+  inset: 0;
+  background: rgba(233, 201, 28, 0.15);
+  z-index: -1;
+}
+
+.as-highlight-box::before,
+.as-highlight-box::after {
   content: '';
   position: absolute;
   top: -3px;
-  right: -3px;
-  width: 5px;
-  height: 5px;
+  width: 2px; height: calc(100% + 6px);
   background: var(--yellow-600);
-  border-radius: 50%;
-  z-index: 3;
 }
+.as-highlight-box::before { left:  -1px; }
+.as-highlight-box::after  { right: -1px; }
 
-/* bottom-left dot */
-.about-sust-subtitle-wrap::after {
-  content: '';
+.as-dot-tr {
   position: absolute;
-  bottom: -3px;
-  left: -3px;
-  width: 5px;
-  height: 5px;
-  background: var(--yellow-600);
+  right: -3px; top: -3px;
+  width: 5px; height: 5px;
   border-radius: 50%;
-  z-index: 3;
+  background: var(--yellow-600);
+}
+.as-dot-bl {
+  position: absolute;
+  left: -3px; bottom: -3px;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--yellow-600);
 }
 
 .about-sust-subtitle {
