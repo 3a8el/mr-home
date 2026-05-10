@@ -643,7 +643,7 @@ function startHeroAnimations() {
 
     const indicator = document.createElement('span');
     indicator.style.cssText = `
-      position:absolute; top:-19px; left:0;
+      position:absolute; top:-16px; left:0;
       width:0%; height:3px;
       background:var(--yellow-600);
       pointer-events:none;
