@@ -270,14 +270,13 @@ function startHeroAnimations() {
 
       gsap.to('.jt-word', {
         color: '#252525',
-        duration: 1,
-        stagger: { each: 0.06, from: 'start' },
-        ease: 'none',
+        duration: 0.4,
+        stagger: { each: 0.05, from: 'start' },
+        ease: 'power2.out',
         scrollTrigger: {
           trigger: '.journey-text',
           start: 'top 85%',
-          end: 'top 15%',
-          scrub: 1
+          toggleActions: 'play none none none'
         }
       });
     }
