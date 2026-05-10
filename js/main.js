@@ -406,7 +406,7 @@ function startHeroAnimations() {
   if (document.querySelector('.section-cta')) {
     /* highlight-box starts collapsed; grows after line1 finishes (0 + 0.8s) */
     gsap.set('.cta-highlight-box', { scaleX: 0, transformOrigin: 'left center' });
-    gsap.set('.cta-bracket-dot, .cta-bracket-dot-bl', { opacity: 0 });
+    gsap.set('.cta-bracket-left, .cta-bracket-right, .cta-bracket-dot, .cta-bracket-dot-bl', { opacity: 0 });
 
     gsap.from('.cta-title .line1, .cta-title .line2, .cta-title .line3', {
       opacity:0, y:30, duration:.8, stagger:.18, ease:'power3.out',
@@ -420,7 +420,7 @@ function startHeroAnimations() {
       delay: 0.8,
       scrollTrigger: { trigger: '.section-cta', start: 'top 70%' }
     });
-    gsap.to('.cta-bracket-dot, .cta-bracket-dot-bl', {
+    gsap.to('.cta-bracket-left, .cta-bracket-right, .cta-bracket-dot, .cta-bracket-dot-bl', {
       opacity: 1,
       duration: 0.3,
       ease: 'power2.out',
