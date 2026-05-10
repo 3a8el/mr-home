@@ -128,19 +128,35 @@ gsap.to('.about-grid-img', {
   });
 })();
 
-// Collage images — parallax
-gsap.fromTo('.about-collage-img-1',
-  { y: 30 },
-  { y: -30, ease: 'none',
-    scrollTrigger: { trigger: '.about-collage', start: 'top bottom', end: 'bottom top', scrub: true }
-  }
-);
-gsap.fromTo('.about-collage-img-2',
-  { y: -20 },
-  { y: 20, ease: 'none',
-    scrollTrigger: { trigger: '.about-collage', start: 'top bottom', end: 'bottom top', scrub: true }
-  }
-);
+// Collage images — staggered clip reveal (img2 starts after img1 is fully shown)
+(function() {
+  const w1  = document.querySelector('.about-collage-img-1');
+  const w2  = document.querySelector('.about-collage-img-2');
+  const i1  = w1 && w1.querySelector('img');
+  const i2  = w2 && w2.querySelector('img');
+  if (!w1 || !w2 || !i1 || !i2) return;
+
+  const HIDDEN = 'polygon(0 0, 0 0, 0 100%, 0 100%)';
+  const SHOWN  = 'polygon(0 0, 100% 0, 100% 100%, 0 100%)';
+
+  const tl = gsap.timeline({
+    scrollTrigger: {
+      trigger: w1,
+      start: 'top 75%',
+      end: '+=360',
+      scrub: 1.5,
+      invalidateOnRefresh: true
+    }
+  });
+
+  // Image 1 — first 180 px of scroll
+  tl.fromTo(w1, { clipPath: HIDDEN }, { clipPath: SHOWN, ease: 'none', duration: 1 }, 0)
+    .fromTo(i1, { scale: 1.5 },       { scale: 1,        ease: 'none', duration: 1 }, 0);
+
+  // Image 2 — starts only when image 1 is fully revealed ( '>' = after prev ends )
+  tl.fromTo(w2, { clipPath: HIDDEN }, { clipPath: SHOWN, ease: 'none', duration: 1 }, '>')
+    .fromTo(i2, { scale: 1.5 },       { scale: 1,        ease: 'none', duration: 1 }, '<');
+})();
 
 // Difference section
 gsap.from('.about-difference-title', {
