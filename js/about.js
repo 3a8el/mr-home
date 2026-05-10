@@ -87,8 +87,8 @@ gsap.to('.about-grid-img', {
   if (ajTitleWords.length) gsap.set(ajTitleWords, { color: '#E9C91C' });
 
   /* highlight starts collapsed */
-  gsap.set('.aj-highlight-box',  { scaleX: 0, transformOrigin: 'left center' });
-  gsap.set('.aj-bracket-right',  { opacity: 0 });
+  gsap.set('.aj-highlight-box', { scaleX: 0, transformOrigin: 'left center' });
+  gsap.set('.aj-dot-tr, .aj-dot-bl', { opacity: 0 });
 
   if (ajTitleWords.length) {
     gsap.to(ajTitleWords, {
@@ -105,7 +105,7 @@ gsap.to('.about-grid-img', {
     delay: 0.6,
     scrollTrigger: { trigger: '.about-journey', start: 'top 75%' }
   });
-  gsap.to('.aj-bracket-right', {
+  gsap.to('.aj-dot-tr, .aj-dot-bl', {
     opacity: 1, duration: 0.3, ease: 'power2.out',
     delay: 1.35,
     scrollTrigger: { trigger: '.about-journey', start: 'top 75%' }
