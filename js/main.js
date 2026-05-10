@@ -257,6 +257,31 @@ function startHeroAnimations() {
       ease: 'power3.out',
       scrollTrigger: { trigger: '#about', start: 'top 70%' }
     });
+
+    /* ─── JOURNEY PARAGRAPH — yellow → dark color wash on scroll ─── */
+    const journeyPara = document.querySelector('.journey-text');
+    if (journeyPara) {
+      journeyPara.innerHTML = journeyPara.textContent.trim()
+        .split(/\s+/)
+        .map(w => `<span class="jt-word" style="display:inline-block;">${w}</span>`)
+        .join(' ');
+
+      gsap.set('.jt-word', { color: '#E9C91C' });
+
+      gsap.to('.jt-word', {
+        color: '#252525',
+        duration: 1,
+        stagger: { each: 0.06, from: 'start' },
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '.journey-text',
+          start: 'top 85%',
+          end: 'top 15%',
+          scrub: 1
+        }
+      });
+    }
+
     gsap.from('.services-header', {
       opacity: 0, y: 20, duration: .6,
       ease: 'power2.out',
