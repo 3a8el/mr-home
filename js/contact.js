@@ -40,12 +40,50 @@ gsap.from('.contact-info-card', {
   ease: 'power3.out'
 });
 
-// Form section scroll reveal
-gsap.from('.contact-form-left', {
-  opacity: 0, x: -40, duration: 0.9,
-  ease: 'power3.out',
-  scrollTrigger: { trigger: '.contact-form-section', start: 'top 70%' }
-});
+// Form section — vertical blinds on title, word-by-word on paragraph
+(function() {
+  function makeBlinds(el, count, bg) {
+    el.style.position = 'relative';
+    const strips = [];
+    for (let i = 0; i < count; i++) {
+      const s = document.createElement('span');
+      s.style.cssText = `display:block;position:absolute;top:0;bottom:0;` +
+        `left:${(i / count) * 100}%;width:calc(${100 / count}% + 1px);` +
+        `background:${bg};z-index:2;pointer-events:none;transform-origin:center center;`;
+      el.appendChild(s);
+      strips.push(s);
+    }
+    return strips;
+  }
+
+  const titleEl = document.querySelector('.contact-form-title');
+  const strips  = titleEl ? makeBlinds(titleEl, 8, '#FAFAFA') : [];
+
+  if (strips.length) {
+    gsap.to(strips, {
+      scaleX: 0, duration: 0.45,
+      stagger: { each: 0.06, from: 'start' },
+      ease: 'power2.inOut',
+      scrollTrigger: { trigger: '.contact-form-section', start: 'top 75%', once: true }
+    });
+  }
+
+  const descEl = document.querySelector('.contact-form-desc');
+  if (descEl) {
+    descEl.innerHTML = descEl.textContent.trim()
+      .split(/\s+/)
+      .map(w => `<span class="cfd-word" style="display:inline-block;">${w}</span>`)
+      .join(' ');
+  }
+
+  gsap.from('.cfd-word', {
+    opacity: 0, y: 14, duration: 0.35,
+    stagger: { each: 0.015, from: 'start' },
+    ease: 'power2.out',
+    delay: 0.35,
+    scrollTrigger: { trigger: '.contact-form-section', start: 'top 70%', once: true }
+  });
+})();
 
 gsap.from('.contact-form', {
   opacity: 0, x: 40, duration: 0.9,
