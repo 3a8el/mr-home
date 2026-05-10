@@ -404,10 +404,52 @@ function startHeroAnimations() {
      4. CTA — staggered lines + slide in (only if present)
   ═══════════════════════════════════════════════════════════ */
   if (document.querySelector('.section-cta')) {
+    /* highlight-box starts collapsed; grows after line1 finishes (0 + 0.8s) */
+    gsap.set('.cta-highlight-box', { scaleX: 0, transformOrigin: 'left center' });
+    gsap.set('.cta-bracket-dot, .cta-bracket-dot-bl', { opacity: 0 });
+
     gsap.from('.cta-title .line1, .cta-title .line2, .cta-title .line3', {
       opacity:0, y:30, duration:.8, stagger:.18, ease:'power3.out',
       scrollTrigger: { trigger: '.section-cta', start:'top 70%' }
     });
+
+    gsap.to('.cta-highlight-box', {
+      scaleX: 1,
+      duration: 0.65,
+      ease: 'power3.inOut',
+      delay: 0.8,
+      scrollTrigger: { trigger: '.section-cta', start: 'top 70%' }
+    });
+    gsap.to('.cta-bracket-dot, .cta-bracket-dot-bl', {
+      opacity: 1,
+      duration: 0.3,
+      ease: 'power2.out',
+      delay: 1.25,
+      scrollTrigger: { trigger: '.section-cta', start: 'top 70%' }
+    });
+
+    /* ─── CTA PARAGRAPH — yellow → dark color wash on entrance ─── */
+    document.querySelectorAll('.cta-text').forEach(para => {
+      para.innerHTML = para.textContent.trim()
+        .split(/\s+/)
+        .map(w => `<span class="ct-word" style="display:inline-block;">${w}</span>`)
+        .join(' ');
+    });
+
+    gsap.set('.ct-word', { color: '#E9C91C' });
+
+    gsap.to('.ct-word', {
+      color: '#252525',
+      duration: 0.4,
+      stagger: { each: 0.05, from: 'start' },
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '.section-cta',
+        start: 'top 70%',
+        toggleActions: 'play none none none'
+      }
+    });
+
     gsap.from('.cta-right', {
       opacity:0, x:40, duration:.9, ease:'power3.out',
       scrollTrigger: { trigger: '.section-cta', start:'top 65%' }

@@ -480,8 +480,7 @@
   position: relative;
 }
 
-.cta-title .line1::before {
-  content: '';
+.cta-highlight-box {
   position: absolute;
   left: -12px; top: 4px;
   width: calc(100% + 24px);
@@ -782,7 +781,7 @@
     display: block;
     text-align: right;
   }
-    .cta-title .line1::before { display: block; left: -8px; top: 0; width: calc(100% + 16px); height: 100%; }
+    .cta-highlight-box { left: -8px; top: 0; width: calc(100% + 16px); height: 100%; }
     .cta-title .line1::after { display: block; left: -8px; }
     .cta-bracket-right { display: block; }
     .cta-bracket-dot { display: block; }
