@@ -78,30 +78,6 @@ gsap.to('.about-grid-img', {
   ease: 'expo.out',
 });
 
-// Photo grid — staggered parallax (image slides down, each one lags more than the one above)
-(function() {
-  const scrub = [0.8, 1.6, 2.8, 4.2]; // increasing lag per image
-
-  document.querySelectorAll('.about-grid-img').forEach((container, i) => {
-    const img = container.querySelector('img');
-    if (!img) return;
-
-    gsap.fromTo(img,
-      { y: -30 },
-      {
-        y: 30,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: '.about-hero-grid',
-          start: 'top bottom',
-          end: 'bottom top',
-          scrub: scrub[i]
-        }
-      }
-    );
-  });
-})();
-
 // Journey section
 gsap.from('.about-journey-title', {
   opacity: 0, x: -40, duration: .9, ease: 'power3.out',
