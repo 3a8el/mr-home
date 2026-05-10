@@ -17,7 +17,7 @@
   if (subWords.length) gsap.set(subWords, { opacity: 0, y: 12 });
   if (dscWords.length) gsap.set(dscWords, { opacity: 0, y: 12 });
   gsap.set('.about-highlight-box', { scaleX: 0, transformOrigin: 'left center' });
-  gsap.set('.about-bracket-left, .about-title-bracket-r, .about-title-dot-tr, .about-title-dot-bl', { opacity: 0 });
+  gsap.set('.about-title-dot-tr, .about-title-dot-bl', { opacity: 0 });
   gsap.set('.about-hero .scroll-widget', { opacity: 0, y: 14 });
 
   const T = 0.45; // title start offset
@@ -36,15 +36,7 @@
     });
   }
 
-  // Highlight: box grows after "Mr. Home" chars appear, then decorators pop in
-  gsap.to('.about-highlight-box', {
-    scaleX: 1, duration: 0.65, ease: 'power3.inOut', delay: T + 0.35
-  });
-  gsap.to('.about-bracket-left, .about-title-bracket-r, .about-title-dot-tr, .about-title-dot-bl', {
-    opacity: 1, duration: 0.3, ease: 'power2.out', delay: T + 0.85
-  });
-
-  // Subtitle: word by word
+  // Subtitle: word by word  (ends ~1.52 s)
   if (subWords.length) {
     gsap.to(subWords, {
       opacity: 1, y: 0, duration: 0.35,
@@ -53,11 +45,11 @@
     });
   }
 
-  // Desc: word by word
+  // Desc: word by word  (each: 0.015 → ~37 words × 0.015 = 0.555 s stagger → ends ~1.78 s)
   if (dscWords.length) {
     gsap.to(dscWords, {
-      opacity: 1, y: 0, duration: 0.35,
-      stagger: { each: 0.04, from: 'start' },
+      opacity: 1, y: 0, duration: 0.28,
+      stagger: { each: 0.015, from: 'start' },
       ease: 'power2.out', delay: 0.95
     });
   }
@@ -65,6 +57,14 @@
   // Scroll widget
   gsap.to('.about-hero .scroll-widget', {
     opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', delay: 1.15
+  });
+
+  // Highlight: box + lines grow after ALL text animations finish (~1.85 s)
+  gsap.to('.about-highlight-box', {
+    scaleX: 1, duration: 0.65, ease: 'power3.inOut', delay: 1.85
+  });
+  gsap.to('.about-title-dot-tr, .about-title-dot-bl', {
+    opacity: 1, duration: 0.3, ease: 'power2.out', delay: 2.5
   });
 })();
 

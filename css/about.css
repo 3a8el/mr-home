@@ -61,7 +61,7 @@
   isolation: isolate;
 }
 
-/* yellow background (real element so GSAP can animate scaleX) */
+/* yellow background — bracket lines are pseudo-elements so they scale with the box */
 .about-highlight-box {
   position: absolute;
   inset: 2px -10px;
@@ -69,23 +69,16 @@
   z-index: -1;
 }
 
-/* left bracket line */
-.about-bracket-left {
+.about-highlight-box::before,
+.about-highlight-box::after {
+  content: '';
   position: absolute;
-  left: -12px; top: -4px;
+  top: -6px;
   width: 2px; height: calc(100% + 8px);
   background: var(--yellow-600);
-  display: block;
 }
-
-/* right bracket */
-.about-title-bracket-r {
-  position: absolute;
-  right: -12px; top: -4px;
-  width: 2px; height: calc(100% + 8px);
-  background: var(--yellow-600);
-  display: block;
-}
+.about-highlight-box::before { left:  -2px; }
+.about-highlight-box::after  { right: -2px; }
 
 /* corner dots */
 .about-title-dot-tr {
