@@ -79,14 +79,54 @@ gsap.to('.about-grid-img', {
 });
 
 // Journey section
-gsap.from('.about-journey-title', {
-  opacity: 0, x: -40, duration: .9, ease: 'power3.out',
-  scrollTrigger: { trigger: '.about-journey', start: 'top 75%' }
-});
-gsap.from('.about-journey-desc', {
-  opacity: 0, y: 24, duration: .7, stagger: .15, ease: 'power2.out',
-  scrollTrigger: { trigger: '.about-journey', start: 'top 70%' }
-});
+(function() {
+  /* ── Title: word color wash (yellow → dark) ── */
+  const ajTitleEl    = document.querySelector('.about-journey-title');
+  const ajTitleWords = ajTitleEl ? splitWordsDeep(ajTitleEl, 'aj-title-word') : [];
+  if (ajTitleWords.length) gsap.set(ajTitleWords, { color: '#252525' }); // start dark, set yellow below
+  if (ajTitleWords.length) gsap.set(ajTitleWords, { color: '#E9C91C' });
+
+  /* highlight starts collapsed */
+  gsap.set('.aj-highlight-box',  { scaleX: 0, transformOrigin: 'left center' });
+  gsap.set('.aj-bracket-right',  { opacity: 0 });
+
+  if (ajTitleWords.length) {
+    gsap.to(ajTitleWords, {
+      color: '#252525', duration: 0.4,
+      stagger: { each: 0.06, from: 'start' },
+      ease: 'power2.out',
+      scrollTrigger: { trigger: '.about-journey', start: 'top 75%', once: true }
+    });
+  }
+
+  /* 3 words × 0.06 + 0.4 = last word ends ~0.52 s → box at 0.6 s */
+  gsap.to('.aj-highlight-box', {
+    scaleX: 1, duration: 0.65, ease: 'power3.inOut',
+    delay: 0.6,
+    scrollTrigger: { trigger: '.about-journey', start: 'top 75%' }
+  });
+  gsap.to('.aj-bracket-right', {
+    opacity: 1, duration: 0.3, ease: 'power2.out',
+    delay: 1.35,
+    scrollTrigger: { trigger: '.about-journey', start: 'top 75%' }
+  });
+
+  /* ── Paragraphs: word-by-word build ── */
+  document.querySelectorAll('.about-journey-desc').forEach((para, i) => {
+    para.innerHTML = para.textContent.trim()
+      .split(/\s+/)
+      .map(w => `<span class="ajd-word" style="display:inline-block;">${w}</span>`)
+      .join(' ');
+  });
+
+  gsap.from('.ajd-word', {
+    opacity: 0, y: 14, duration: 0.35,
+    stagger: { each: 0.03, from: 'start' },
+    ease: 'power2.out',
+    delay: 0.35,
+    scrollTrigger: { trigger: '.about-journey', start: 'top 70%', once: true }
+  });
+})();
 
 // Collage images — parallax
 gsap.fromTo('.about-collage-img-1',

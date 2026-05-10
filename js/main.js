@@ -127,6 +127,30 @@ function splitWords(el) {
   return el.querySelectorAll('.h-word');
 }
 
+/* split words while preserving inner HTML structure (walks text nodes only) */
+function splitWordsDeep(el, cls) {
+  const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+  const nodes = [];
+  let n;
+  while ((n = walker.nextNode())) nodes.push(n);
+  nodes.forEach(tn => {
+    const frag = document.createDocumentFragment();
+    tn.textContent.split(/(\s+)/).forEach(part => {
+      if (/^\s*$/.test(part)) {
+        frag.appendChild(document.createTextNode(part));
+      } else {
+        const s = document.createElement('span');
+        s.className = cls;
+        s.style.display = 'inline-block';
+        s.textContent = part;
+        frag.appendChild(s);
+      }
+    });
+    tn.parentNode.replaceChild(frag, tn);
+  });
+  return el.querySelectorAll('.' + cls);
+}
+
 /* project.html has its own navbar animation — skip on that page */
 const isProjectPage = !!document.querySelector('.ph-hero');
 
@@ -227,41 +251,33 @@ function startHeroAnimations() {
      2. HOME PAGE — journey + services animations
   ═══════════════════════════════════════════════════════════ */
   if (document.querySelector('#about')) {
-    /* ── Title: char wave (yellow → dark) ──────────────────── */
-    const jTitleEl = document.querySelector('.journey-title');
-    const jChars   = jTitleEl ? splitChars(jTitleEl) : [];
-    if (jChars.length) gsap.set(jChars, { opacity: 0, color: '#E9C91C' });
+    /* ── Title: word color wash (yellow → dark) ─────────────── */
+    const jTitleEl   = document.querySelector('.journey-title');
+    const jTitleWords = jTitleEl ? splitWordsDeep(jTitleEl, 'j-title-word') : [];
+    if (jTitleWords.length) gsap.set(jTitleWords, { color: '#E9C91C' });
 
     /* highlight-box starts collapsed */
     gsap.set('.highlight-box', { scaleX: 0, transformOrigin: 'left center' });
     gsap.set('.highlight-dot-tr, .highlight-dot-bl', { opacity: 0 });
 
-    if (jChars.length) {
-      gsap.to(jChars, {
-        opacity: 1, duration: 0.04,
-        stagger: { each: 0.022, from: 'start' },
-        ease: 'none',
-        scrollTrigger: { trigger: '#about', start: 'top 75%', once: true }
-      });
-      /* color wave starts 0.13 s after opacity wave */
-      gsap.to(jChars, {
+    if (jTitleWords.length) {
+      gsap.to(jTitleWords, {
         color: '#252525', duration: 0.4,
-        stagger: { each: 0.032, from: 'start' },
-        ease: 'power2.inOut',
-        delay: 0.13,
+        stagger: { each: 0.06, from: 'start' },
+        ease: 'power2.out',
         scrollTrigger: { trigger: '#about', start: 'top 75%', once: true }
       });
     }
 
-    /* ~43 chars × 0.022 = 0.95 s for all chars to appear → box at 1.0 s, dots at 1.75 s */
+    /* 9 words × 0.06 stagger + 0.4 duration = last word ends ~0.88 s → box at 0.95 s */
     gsap.to('.highlight-box', {
       scaleX: 1, duration: 0.65, ease: 'power3.inOut',
-      delay: 1.0,
+      delay: 0.95,
       scrollTrigger: { trigger: '#about', start: 'top 75%' }
     });
     gsap.to('.highlight-dot-tr, .highlight-dot-bl', {
       opacity: 1, duration: 0.3, ease: 'power2.out',
-      delay: 1.75,
+      delay: 1.7,
       scrollTrigger: { trigger: '#about', start: 'top 75%' }
     });
 
