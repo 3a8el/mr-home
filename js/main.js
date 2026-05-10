@@ -95,6 +95,38 @@ gsap.registerPlugin(ScrollTrigger);
    1. HERO — pre-hide, then reveal after preloader / curtain
 ═══════════════════════════════════════════════════════════ */
 
+/* split each character into a .h-char span, preserving HTML tags */
+function splitChars(el) {
+  const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+  const nodes = [];
+  let n;
+  while ((n = walker.nextNode())) nodes.push(n);
+  nodes.forEach(tn => {
+    const frag = document.createDocumentFragment();
+    [...tn.textContent].forEach(ch => {
+      if (ch === ' ' || ch === '\n') {
+        frag.appendChild(document.createTextNode(ch));
+      } else {
+        const s = document.createElement('span');
+        s.className = 'h-char';
+        s.textContent = ch;
+        frag.appendChild(s);
+      }
+    });
+    tn.parentNode.replaceChild(frag, tn);
+  });
+  return el.querySelectorAll('.h-char');
+}
+
+/* split each word into an inline-block .h-word span */
+function splitWords(el) {
+  const text = el.textContent.trim();
+  el.innerHTML = text.split(/\s+/).map(w =>
+    `<span class="h-word" style="display:inline-block;">${w}</span>`
+  ).join(' ');
+  return el.querySelectorAll('.h-word');
+}
+
 /* project.html has its own navbar animation — skip on that page */
 const isProjectPage = !!document.querySelector('.ph-hero');
 
@@ -105,11 +137,24 @@ if (!isProjectPage) {
   gsap.set('.hamburger',    { opacity: 0 });
 }
 
+let _heroChars, _heroWords;
+
 if (document.getElementById('preloader')) {
-  gsap.set('.hero-title',   { opacity: 0, y: 36 });
-  gsap.set('.hero-sub',     { opacity: 0, y: 28 });
-  gsap.set('.avatar-row',   { opacity: 0, y: 22 });
-  gsap.set('.scroll-widget',{ opacity: 0, y: 14 });
+  const titleEl = document.querySelector('.hero-title');
+  const subEl   = document.querySelector('.hero-sub');
+
+  if (titleEl) {
+    _heroChars = splitChars(titleEl);
+    gsap.set(_heroChars, { opacity: 0, color: '#E9C91C' });
+  }
+  if (subEl) {
+    _heroWords = splitWords(subEl);
+    gsap.set(_heroWords, { opacity: 0, y: 14 });
+  }
+
+  gsap.set('.avatar-stack .avatar', { opacity: 0, y: 16 });
+  gsap.set('.avatar-label',         { opacity: 0, y: 10 });
+  gsap.set('.scroll-widget',        { opacity: 0, y: 14 });
 }
 
 /* shared navbar entrance — runs on all pages (except project.html) */
@@ -134,10 +179,48 @@ function startNavAnimation() {
 function startHeroAnimations() {
   startNavAnimation();
   const tl = gsap.timeline();
-  tl.to('.hero-title',    { opacity: 1, y: 0, duration: 0.8,  ease: 'power3.out' }, 0.6);
-  tl.to('.hero-sub',      { opacity: 1, y: 0, duration: 0.7,  ease: 'power3.out' }, 0.78);
-  tl.to('.avatar-row',    { opacity: 1, y: 0, duration: 0.65, ease: 'power3.out' }, 0.94);
-  tl.to('.scroll-widget', { opacity: 1, y: 0, duration: 0.5,  ease: 'power2.out' }, 1.08);
+
+  /* H1: chars wave in yellow, then color-shift to white */
+  if (_heroChars && _heroChars.length) {
+    tl.to(_heroChars, {
+      opacity: 1,
+      duration: 0.04,
+      stagger: { each: 0.022, from: 'start' },
+      ease: 'none'
+    }, 0.55);
+    tl.to(_heroChars, {
+      color: '#FAFAFA',
+      duration: 0.4,
+      stagger: { each: 0.032, from: 'start' },
+      ease: 'power2.inOut'
+    }, 0.68);
+  }
+
+  /* Paragraph: word by word */
+  if (_heroWords && _heroWords.length) {
+    tl.to(_heroWords, {
+      opacity: 1,
+      y: 0,
+      duration: 0.38,
+      stagger: { each: 0.055, from: 'start' },
+      ease: 'power2.out'
+    }, 0.95);
+  }
+
+  /* Avatars: one by one, then label */
+  tl.to('.avatar-stack .avatar', {
+    opacity: 1, y: 0,
+    duration: 0.4,
+    stagger: 0.1,
+    ease: 'power2.out'
+  }, 1.15);
+  tl.to('.avatar-label', {
+    opacity: 1, y: 0,
+    duration: 0.38,
+    ease: 'power2.out'
+  }, 1.6);
+
+  tl.to('.scroll-widget', { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }, 1.35);
 }
 
   /* ═══════════════════════════════════════════════════════════
