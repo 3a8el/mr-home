@@ -512,6 +512,10 @@
     min-height: 100vh;
   }
 
+  /* navbar must be absolute on mobile so left:24px/right:24px from style.css
+     constrains it properly — position:relative + left:24px shifts it off-screen */
+  .about-hero .navbar { position: absolute; }
+
   .about-hero-content {
     flex-direction: column;
     padding: 40px 24px 0;
