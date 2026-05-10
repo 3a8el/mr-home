@@ -207,11 +207,11 @@
     const EASE = 'power3.inOut';
 
     gsap.set(inn, { zIndex: 2, clipPath: HIDDEN });
-    gsap.set(out, { zIndex: 1, x: 0 });
+    gsap.set(out, { zIndex: 1, clipPath: FULL });
     gsap.set(inn.querySelector('img'), { scale: 1.4 });
 
     const tl = gsap.timeline({ onComplete: () => {
-      gsap.set(out, { zIndex: 0, x: 0, clipPath: 'none' });
+      gsap.set(out, { zIndex: 0, clipPath: 'none' });
       gsap.set([out.querySelector('img'), inn.querySelector('img')], { clearProps: 'all' });
       done();
     }});
@@ -220,8 +220,8 @@
     tl.to(inn, { clipPath: FULL, duration: DUR, ease: EASE }, 0)
       .to(inn.querySelector('img'), { scale: 1, duration: DUR, ease: EASE }, 0);
 
-    // Old image: slides out to the left
-    tl.to(out, { x: '-100%', duration: DUR, ease: EASE }, 0);
+    // Old image: clips out right→left, no scale
+    tl.to(out, { clipPath: GONE, duration: DUR, ease: EASE }, 0);
   }
 
   /* ─── VIEW cursor label ─────────────────────────────────── */
