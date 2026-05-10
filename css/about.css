@@ -138,10 +138,12 @@
 
 .about-grid-img:hover img { transform: scale(1.05); }
 
-/* ─── SCROLL WIDGET (override to match home page size) ─── */
+/* ─── SCROLL WIDGET — pinned to bottom center of hero ─── */
 .about-hero .scroll-widget {
-  width: fit-content;
-  align-self: flex-start;
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 /* ─── JOURNEY SECTION ────────────────────────────────────── */
