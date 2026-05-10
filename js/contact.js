@@ -86,7 +86,7 @@ gsap.from('.contact-info-card', {
 })();
 
 gsap.from('.contact-form', {
-  opacity: 0, x: 40, duration: 0.9,
+  opacity: 0, y: 40, duration: 0.9,
   ease: 'power3.out',
   scrollTrigger: { trigger: '.contact-form-section', start: 'top 70%' }
 });
