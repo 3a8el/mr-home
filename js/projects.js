@@ -203,12 +203,12 @@
     const FULL   = 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)';
     const HIDDEN = 'polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%)'; // new starts hidden on right
     const GONE   = 'polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)';        // old ends hidden on left
-    const DUR  = 0.9;
+    const DUR  = 1.2;
     const EASE = 'power3.inOut';
 
     gsap.set(inn, { zIndex: 2, clipPath: HIDDEN });
     gsap.set(out, { zIndex: 1, clipPath: FULL });
-    gsap.set(inn.querySelector('img'), { scale: 1.15 });
+    gsap.set(inn.querySelector('img'), { scale: 1.4 });
     gsap.set(out.querySelector('img'), { scale: 1 });
 
     const tl = gsap.timeline({ onComplete: () => {
