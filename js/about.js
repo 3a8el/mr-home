@@ -215,19 +215,43 @@ gsap.to('.about-culture-card', {
 
 // Sustainability
 (function() {
-  // "From Nature" + "to Nurture" — spotlight clip-path reveal from center outward
-  gsap.set('.about-sust-title, .about-sust-title-cont', { clipPath: 'inset(0 50% 0 50%)' });
-  gsap.to('.about-sust-title', {
-    clipPath: 'inset(0 0% 0 0%)',
-    duration: 0.9, ease: 'power2.inOut',
-    scrollTrigger: { trigger: '.about-sust-content', start: 'top 80%', once: true }
-  });
-  gsap.to('.about-sust-title-cont', {
-    clipPath: 'inset(0 0% 0 0%)',
-    duration: 0.9, ease: 'power2.inOut',
-    delay: 0.25,
-    scrollTrigger: { trigger: '.about-sust-content', start: 'top 80%', once: true }
-  });
+  // "From Nature" + "to Nurture" — vertical blinds reveal
+  function makeBlinds(el, count) {
+    el.style.position = 'relative';
+    const strips = [];
+    for (let i = 0; i < count; i++) {
+      const s = document.createElement('span');
+      s.style.cssText = `display:block;position:absolute;top:0;bottom:0;` +
+        `left:${(i / count) * 100}%;width:calc(${100 / count}% + 1px);` +
+        `background:#fff;z-index:2;pointer-events:none;transform-origin:center center;`;
+      el.appendChild(s);
+      strips.push(s);
+    }
+    return strips;
+  }
+
+  const titleEl = document.querySelector('.about-sust-title');
+  const contEl  = document.querySelector('.about-sust-title-cont');
+  const strips1 = titleEl ? makeBlinds(titleEl, 8) : [];
+  const strips2 = contEl  ? makeBlinds(contEl,  8) : [];
+
+  if (strips1.length) {
+    gsap.to(strips1, {
+      scaleX: 0, duration: 0.45,
+      stagger: { each: 0.06, from: 'start' },
+      ease: 'power2.inOut',
+      scrollTrigger: { trigger: '.about-sust-content', start: 'top 80%', once: true }
+    });
+  }
+  if (strips2.length) {
+    gsap.to(strips2, {
+      scaleX: 0, duration: 0.45,
+      stagger: { each: 0.06, from: 'start' },
+      ease: 'power2.inOut',
+      delay: 0.25,
+      scrollTrigger: { trigger: '.about-sust-content', start: 'top 80%', once: true }
+    });
+  }
 
   // "Sustainable Elegance in Wood" — word color wash (invisible → yellow → dark)
   const asSubEl    = document.querySelector('.about-sust-subtitle');
