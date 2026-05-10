@@ -143,7 +143,7 @@ gsap.to('.about-grid-img', {
     scrollTrigger: {
       trigger: w1,
       start: 'top 75%',
-      end: '+=360',
+      end: '+=540',
       scrub: 1.5,
       invalidateOnRefresh: true
     }
@@ -153,8 +153,9 @@ gsap.to('.about-grid-img', {
   tl.fromTo(w1, { clipPath: HIDDEN }, { clipPath: SHOWN, ease: 'none', duration: 1 }, 0)
     .fromTo(i1, { scale: 1.5 },       { scale: 1,        ease: 'none', duration: 1 }, 0);
 
-  // Image 2 — starts only when image 1 is fully revealed ( '>' = after prev ends )
-  tl.fromTo(w2, { clipPath: HIDDEN }, { clipPath: SHOWN, ease: 'none', duration: 1 }, '>')
+  // 180 px pause — user has time to see image 1 fully before image 2 starts
+  // Image 2 — last 180 px of scroll  ( '>+1' = 1 unit after image 1 ends )
+  tl.fromTo(w2, { clipPath: HIDDEN }, { clipPath: SHOWN, ease: 'none', duration: 1 }, '>+1')
     .fromTo(i2, { scale: 1.5 },       { scale: 1,        ease: 'none', duration: 1 }, '<');
 })();
 
