@@ -227,38 +227,51 @@ function startHeroAnimations() {
      2. HOME PAGE — journey + services animations
   ═══════════════════════════════════════════════════════════ */
   if (document.querySelector('#about')) {
-    /* highlight-box starts collapsed; grows after line-3 finishes */
+    /* ── Title: char wave (yellow → dark) ──────────────────── */
+    const jTitleEl = document.querySelector('.journey-title');
+    const jChars   = jTitleEl ? splitChars(jTitleEl) : [];
+    if (jChars.length) gsap.set(jChars, { opacity: 0, color: '#E9C91C' });
+
+    /* highlight-box starts collapsed */
     gsap.set('.highlight-box', { scaleX: 0, transformOrigin: 'left center' });
     gsap.set('.highlight-dot-tr, .highlight-dot-bl', { opacity: 0 });
 
-    gsap.from('.journey-title .line-1, .journey-title .line-2, .journey-title .line-3', {
-      opacity: 0, x: -40, duration: .8,
-      stagger: .15, ease: 'power3.out',
-      scrollTrigger: { trigger: '#about', start: 'top 75%' }
-    });
+    if (jChars.length) {
+      gsap.to(jChars, {
+        opacity: 1, duration: 0.04,
+        stagger: { each: 0.022, from: 'start' },
+        ease: 'none',
+        scrollTrigger: { trigger: '#about', start: 'top 75%', once: true }
+      });
+      /* color wave starts 0.13 s after opacity wave */
+      gsap.to(jChars, {
+        color: '#252525', duration: 0.4,
+        stagger: { each: 0.032, from: 'start' },
+        ease: 'power2.inOut',
+        delay: 0.13,
+        scrollTrigger: { trigger: '#about', start: 'top 75%', once: true }
+      });
+    }
 
-    /* line-3 ends at stagger(2×0.15) + duration(0.8) = 1.1s → grow the box */
+    /* ~43 chars × 0.022 = 0.95 s for all chars to appear → box at 1.0 s, dots at 1.75 s */
     gsap.to('.highlight-box', {
-      scaleX: 1,
-      duration: 0.65,
-      ease: 'power3.inOut',
-      delay: 1.1,
+      scaleX: 1, duration: 0.65, ease: 'power3.inOut',
+      delay: 1.0,
       scrollTrigger: { trigger: '#about', start: 'top 75%' }
     });
     gsap.to('.highlight-dot-tr, .highlight-dot-bl', {
-      opacity: 1,
-      duration: 0.3,
-      ease: 'power2.out',
-      delay: 1.55,
+      opacity: 1, duration: 0.3, ease: 'power2.out',
+      delay: 1.75,
       scrollTrigger: { trigger: '#about', start: 'top 75%' }
     });
+
     gsap.from('.journey-right', {
       opacity: 0, x: 40, duration: .9,
       ease: 'power3.out',
       scrollTrigger: { trigger: '#about', start: 'top 70%' }
     });
 
-    /* ─── JOURNEY PARAGRAPH — yellow → dark color wash on scroll ─── */
+    /* ── Paragraph: word-by-word build (0.5 s after container slides in) ── */
     const journeyPara = document.querySelector('.journey-text');
     if (journeyPara) {
       journeyPara.innerHTML = journeyPara.textContent.trim()
@@ -266,18 +279,12 @@ function startHeroAnimations() {
         .map(w => `<span class="jt-word" style="display:inline-block;">${w}</span>`)
         .join(' ');
 
-      gsap.set('.jt-word', { color: '#E9C91C' });
-
-      gsap.to('.jt-word', {
-        color: '#252525',
-        duration: 0.4,
+      gsap.from('.jt-word', {
+        opacity: 0, y: 14, duration: 0.38,
         stagger: { each: 0.05, from: 'start' },
         ease: 'power2.out',
-        scrollTrigger: {
-          trigger: '.journey-text',
-          start: 'top 85%',
-          toggleActions: 'play none none none'
-        }
+        delay: 0.5,
+        scrollTrigger: { trigger: '#about', start: 'top 70%', once: true }
       });
     }
 
