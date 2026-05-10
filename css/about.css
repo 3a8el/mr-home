@@ -58,6 +58,7 @@
 .about-title-highlight {
   position: relative;
   display: inline-block;
+  isolation: isolate;
 }
 
 /* yellow background (real element so GSAP can animate scaleX) */
