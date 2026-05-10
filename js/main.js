@@ -227,9 +227,29 @@ function startHeroAnimations() {
      2. HOME PAGE — journey + services animations
   ═══════════════════════════════════════════════════════════ */
   if (document.querySelector('#about')) {
+    /* highlight-box starts collapsed; grows after line-3 finishes */
+    gsap.set('.highlight-box', { scaleX: 0, transformOrigin: 'left center' });
+    gsap.set('.highlight-dot-tr, .highlight-dot-bl', { opacity: 0 });
+
     gsap.from('.journey-title .line-1, .journey-title .line-2, .journey-title .line-3', {
       opacity: 0, x: -40, duration: .8,
       stagger: .15, ease: 'power3.out',
+      scrollTrigger: { trigger: '#about', start: 'top 75%' }
+    });
+
+    /* line-3 ends at stagger(2×0.15) + duration(0.8) = 1.1s → grow the box */
+    gsap.to('.highlight-box', {
+      scaleX: 1,
+      duration: 0.65,
+      ease: 'power3.inOut',
+      delay: 1.1,
+      scrollTrigger: { trigger: '#about', start: 'top 75%' }
+    });
+    gsap.to('.highlight-dot-tr, .highlight-dot-bl', {
+      opacity: 1,
+      duration: 0.3,
+      ease: 'power2.out',
+      delay: 1.55,
       scrollTrigger: { trigger: '#about', start: 'top 75%' }
     });
     gsap.from('.journey-right', {
