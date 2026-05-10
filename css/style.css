@@ -21,35 +21,42 @@
   @media (pointer: fine) {
     * { cursor: none !important; }
   }
-  .cursor-dot {
-    position: fixed;
-    top: 0; left: 0;
-    width: 8px; height: 8px;
-    background: #fff;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 99999;
-    will-change: left, top;
-    mix-blend-mode: difference;
-    transition: opacity .2s ease;
+  .cursor-dot,
+  .cursor-ring { display: none; }
+
+  @media (pointer: fine) {
+    .cursor-dot {
+      display: block;
+      position: fixed;
+      top: 0; left: 0;
+      width: 8px; height: 8px;
+      background: #fff;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 99999;
+      will-change: left, top;
+      mix-blend-mode: difference;
+      transition: opacity .2s ease;
+    }
+    .cursor-ring {
+      display: block;
+      position: fixed;
+      top: 0; left: 0;
+      width: 36px; height: 36px;
+      border: 1.5px solid #fff;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 99998;
+      will-change: left, top;
+      mix-blend-mode: difference;
+      transition: width .3s ease, height .3s ease, border-radius .3s ease, opacity .2s ease;
+    }
+    .cursor-ring.is-hovering {
+      width: 56px; height: 56px;
+    }
+    .cursor-dot.is-hidden,
+    .cursor-ring.is-hidden { opacity: 0; }
   }
-  .cursor-ring {
-    position: fixed;
-    top: 0; left: 0;
-    width: 36px; height: 36px;
-    border: 1.5px solid #fff;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 99998;
-    will-change: left, top;
-    mix-blend-mode: difference;
-    transition: width .3s ease, height .3s ease, border-radius .3s ease, opacity .2s ease;
-  }
-  .cursor-ring.is-hovering {
-    width: 56px; height: 56px;
-  }
-  .cursor-dot.is-hidden,
-  .cursor-ring.is-hidden { opacity: 0; }
 
   /* ─── RESET ──────────────────────────────────────────────── */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
