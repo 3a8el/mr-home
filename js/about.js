@@ -160,10 +160,49 @@ gsap.to('.about-grid-img', {
 })();
 
 // Difference section
-gsap.from('.about-difference-title', {
-  opacity: 0, y: 30, duration: .8, ease: 'power3.out',
-  scrollTrigger: { trigger: '.about-difference', start: 'top 75%' }
-});
+(function() {
+  const adTitleEl    = document.querySelector('.about-difference-title');
+  const adTitleWords = adTitleEl ? splitWordsDeep(adTitleEl, 'ad-title-word') : [];
+  if (adTitleWords.length) gsap.set(adTitleWords, { color: '#E9C91C' });
+
+  gsap.set('.ad-highlight-box', { scaleX: 0, transformOrigin: 'left center' });
+  gsap.set('.ad-dot-tr, .ad-dot-bl', { opacity: 0 });
+
+  if (adTitleWords.length) {
+    gsap.to(adTitleWords, {
+      color: '#252525', duration: 0.4,
+      stagger: { each: 0.06, from: 'start' },
+      ease: 'power2.out',
+      scrollTrigger: { trigger: '.about-difference', start: 'top 75%', once: true }
+    });
+  }
+
+  gsap.to('.ad-highlight-box', {
+    scaleX: 1, duration: 0.65, ease: 'power3.inOut',
+    delay: 0.6,
+    scrollTrigger: { trigger: '.about-difference', start: 'top 75%' }
+  });
+  gsap.to('.ad-dot-tr, .ad-dot-bl', {
+    opacity: 1, duration: 0.3, ease: 'power2.out',
+    delay: 1.35,
+    scrollTrigger: { trigger: '.about-difference', start: 'top 75%' }
+  });
+
+  document.querySelectorAll('.about-difference-desc').forEach((para) => {
+    para.innerHTML = para.textContent.trim()
+      .split(/\s+/)
+      .map(w => `<span class="add-word" style="display:inline-block;">${w}</span>`)
+      .join(' ');
+  });
+
+  gsap.from('.add-word', {
+    opacity: 0, y: 14, duration: 0.35,
+    stagger: { each: 0.015, from: 'start' },
+    ease: 'power2.out',
+    delay: 0.35,
+    scrollTrigger: { trigger: '.about-difference', start: 'top 70%', once: true }
+  });
+})();
 
 // Culture cards — clip reveal with stagger
 gsap.set('.about-culture-card', { clipPath: 'inset(100% 0 0 0)' });
