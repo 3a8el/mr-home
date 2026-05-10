@@ -2,11 +2,37 @@
    CONTACT PAGE — animations + form
 ═══════════════════════════════════════════════════════════ */
 
-// Hero title + cards stagger in on load
-gsap.from('.contact-hero-title', {
-  opacity: 0, y: 40, duration: 1,
-  delay: 0.3, ease: 'power3.out'
-});
+// Hero — char wave + highlight (matches about hero pattern)
+(function() {
+  const titleEl = document.querySelector('.contact-hero-title');
+  const chars   = titleEl ? splitChars(titleEl) : [];
+
+  if (chars.length) gsap.set(chars, { opacity: 0, color: '#E9C91C' });
+  gsap.set('.ch-highlight-box', { scaleX: 0, transformOrigin: 'left center' });
+  gsap.set('.ch-dot-tr, .ch-dot-bl', { opacity: 0 });
+
+  const T = 0.45;
+
+  if (chars.length) {
+    gsap.to(chars, {
+      opacity: 1, duration: 0.04,
+      stagger: { each: 0.022, from: 'start' },
+      ease: 'none', delay: T
+    });
+    gsap.to(chars, {
+      color: '#FAFAFA', duration: 0.4,
+      stagger: { each: 0.032, from: 'start' },
+      ease: 'power2.inOut', delay: T + 0.13
+    });
+  }
+
+  gsap.to('.ch-highlight-box', {
+    scaleX: 1, duration: 0.65, ease: 'power3.inOut', delay: 1.65
+  });
+  gsap.to('.ch-dot-tr, .ch-dot-bl', {
+    opacity: 1, duration: 0.3, ease: 'power2.out', delay: 2.2
+  });
+})();
 
 gsap.from('.contact-info-card', {
   opacity: 0, y: 30, duration: 0.8,
