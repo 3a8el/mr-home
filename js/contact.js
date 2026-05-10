@@ -91,11 +91,44 @@ gsap.from('.contact-form', {
   scrollTrigger: { trigger: '.contact-form-section', start: 'top 70%' }
 });
 
-gsap.from('.form-field', {
-  opacity: 0, y: 20, duration: 0.6,
-  stagger: 0.08, ease: 'power2.out',
-  scrollTrigger: { trigger: '.contact-form', start: 'top 80%' }
-});
+// Form fields — input slides up from bottom, border grows left-to-right, staggered per field
+(function() {
+  const fields = document.querySelectorAll('.form-field');
+
+  fields.forEach(field => {
+    const line = document.createElement('span');
+    line.className = 'field-line';
+    field.appendChild(line);
+  });
+
+  gsap.set('.form-field input, .form-field select, .form-field textarea', { opacity: 0, y: 28 });
+  gsap.set('.field-line', { scaleX: 0 });
+
+  fields.forEach((field, i) => {
+    const delay   = i * 0.12;
+    const input   = field.querySelector('input, select, textarea');
+    const line    = field.querySelector('.field-line');
+    const trigger = { scrollTrigger: { trigger: '.contact-form', start: 'top 80%', once: true } };
+
+    if (input) {
+      gsap.to(input, {
+        opacity: 1, y: 0,
+        duration: 0.55, ease: 'power3.out',
+        delay,
+        ...trigger
+      });
+    }
+
+    if (line) {
+      gsap.to(line, {
+        scaleX: 1,
+        duration: 0.5, ease: 'power2.out',
+        delay: delay + 0.25,
+        ...trigger
+      });
+    }
+  });
+})();
 
 // Form submission handler
 const form = document.getElementById('contactForm');
