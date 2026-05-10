@@ -142,7 +142,7 @@
 .about-hero .scroll-widget {
   position: absolute;
   bottom: 32px;
-  left: 50%;
+  left: 96px;
   transform: translateX(-50%);
 }
 
@@ -518,6 +518,7 @@
     margin-top: 70px;
     gap: 40px;
     overflow: visible;
+    align-items: stretch;
   }
 
   .about-hero-left {
@@ -581,6 +582,7 @@
     gap: 24px;
     margin: -40px 16px 0;
     padding: 28px 24px;
+    align-items: stretch;
   }
 
   .about-sust-content-left {

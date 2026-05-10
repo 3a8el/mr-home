@@ -299,6 +299,7 @@
   .contact-form-inner {
     flex-direction: column;
     gap: 40px;
+    align-items: stretch;
   }
 
   .contact-form-left {
