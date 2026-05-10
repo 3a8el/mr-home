@@ -3,18 +3,70 @@
 ═══════════════════════════════════════════════════════════ */
 
 // Hero entrance
-gsap.from('.about-hero-title', {
-  opacity: 0, y: 40, duration: .9, delay: .3, ease: 'power3.out'
-});
-gsap.from('.about-hero-subtitle', {
-  opacity: 0, y: 20, duration: .7, delay: .5, ease: 'power3.out'
-});
-gsap.from('.about-hero-desc', {
-  opacity: 0, y: 20, duration: .7, delay: .65, ease: 'power3.out'
-});
-gsap.from('.scroll-widget', {
-  opacity: 0, scale: .8, duration: .6, delay: .8, ease: 'back.out(1.7)'
-});
+(function() {
+  const titleEl    = document.querySelector('.about-hero-title');
+  const subtitleEl = document.querySelector('.about-hero-subtitle');
+  const descEl     = document.querySelector('.about-hero-desc');
+
+  const chars    = titleEl    ? splitChars(titleEl)    : [];
+  const subWords = subtitleEl ? splitWords(subtitleEl) : [];
+  const dscWords = descEl     ? splitWords(descEl)     : [];
+
+  // Pre-hide
+  if (chars.length)    gsap.set(chars,    { opacity: 0, color: '#E9C91C' });
+  if (subWords.length) gsap.set(subWords, { opacity: 0, y: 12 });
+  if (dscWords.length) gsap.set(dscWords, { opacity: 0, y: 12 });
+  gsap.set('.about-highlight-box', { scaleX: 0, transformOrigin: 'left center' });
+  gsap.set('.about-bracket-left, .about-title-bracket-r, .about-title-dot-tr, .about-title-dot-bl', { opacity: 0 });
+  gsap.set('.about-hero .scroll-widget', { opacity: 0, y: 14 });
+
+  const T = 0.45; // title start offset
+
+  // H1: chars wave in yellow then shift to white
+  if (chars.length) {
+    gsap.to(chars, {
+      opacity: 1, duration: 0.04,
+      stagger: { each: 0.022, from: 'start' },
+      ease: 'none', delay: T
+    });
+    gsap.to(chars, {
+      color: '#FAFAFA', duration: 0.4,
+      stagger: { each: 0.032, from: 'start' },
+      ease: 'power2.inOut', delay: T + 0.13
+    });
+  }
+
+  // Highlight: box grows after "Mr. Home" chars appear, then decorators pop in
+  gsap.to('.about-highlight-box', {
+    scaleX: 1, duration: 0.65, ease: 'power3.inOut', delay: T + 0.35
+  });
+  gsap.to('.about-bracket-left, .about-title-bracket-r, .about-title-dot-tr, .about-title-dot-bl', {
+    opacity: 1, duration: 0.3, ease: 'power2.out', delay: T + 0.85
+  });
+
+  // Subtitle: word by word
+  if (subWords.length) {
+    gsap.to(subWords, {
+      opacity: 1, y: 0, duration: 0.35,
+      stagger: { each: 0.06, from: 'start' },
+      ease: 'power2.out', delay: 0.75
+    });
+  }
+
+  // Desc: word by word
+  if (dscWords.length) {
+    gsap.to(dscWords, {
+      opacity: 1, y: 0, duration: 0.35,
+      stagger: { each: 0.04, from: 'start' },
+      ease: 'power2.out', delay: 0.95
+    });
+  }
+
+  // Scroll widget
+  gsap.to('.about-hero .scroll-widget', {
+    opacity: 1, y: 0, duration: 0.5, ease: 'power2.out', delay: 1.15
+  });
+})();
 
 // Photo grid — stagger clip reveal
 gsap.set('.about-grid-img', { clipPath: 'inset(100% 0 0 0)' });
