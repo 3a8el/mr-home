@@ -198,22 +198,32 @@
     });
   }
 
-  /* ─── Scale + depth crossfade ───────────────────────────── */
+  /* ─── Clip-path wipe: new clips in right→left, old clips out right→left ── */
   function transC(out, inn, done) {
-    gsap.set(out, { zIndex: 2 });
-    gsap.set(inn, { zIndex: 1, opacity: 0 });
-    gsap.set(inn.querySelector('img'), { scale: 1.1 });
+    const FULL   = 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)';
+    const HIDDEN = 'polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%)'; // new starts hidden on right
+    const GONE   = 'polygon(0% 0%, 0% 0%, 0% 100%, 0% 100%)';        // old ends hidden on left
+    const DUR  = 0.9;
+    const EASE = 'power3.inOut';
+
+    gsap.set(inn, { zIndex: 2, clipPath: HIDDEN });
+    gsap.set(out, { zIndex: 1, clipPath: FULL });
+    gsap.set(inn.querySelector('img'), { scale: 1.15 });
+    gsap.set(out.querySelector('img'), { scale: 1 });
 
     const tl = gsap.timeline({ onComplete: () => {
-      gsap.set(out, { zIndex: 0, opacity: 1 });
-      gsap.set(out.querySelector('img'), { clearProps: 'scale' });
+      gsap.set(out, { zIndex: 0, clipPath: 'none' });
+      gsap.set([out.querySelector('img'), inn.querySelector('img')], { clearProps: 'all' });
       done();
     }});
 
-    tl.to(out.querySelector('img'), { scale: 1.15, duration: 0.9, ease: 'power2.inOut' }, 0)
-      .to(out, { opacity: 0, duration: 0.65, ease: 'power2.in' }, 0);
-    tl.to(inn, { opacity: 1, duration: 0.75, ease: 'power2.out' }, 0.18)
-      .to(inn.querySelector('img'), { scale: 1, duration: 0.75, ease: 'power2.out' }, 0.18);
+    // New image: left edge sweeps right→left, image zooms to natural size
+    tl.to(inn, { clipPath: FULL, duration: DUR, ease: EASE }, 0)
+      .to(inn.querySelector('img'), { scale: 1, duration: DUR, ease: EASE }, 0);
+
+    // Old image: right edge sweeps right→left, image scales slightly out
+    tl.to(out, { clipPath: GONE, duration: DUR, ease: EASE }, 0)
+      .to(out.querySelector('img'), { scale: 1.08, duration: DUR, ease: EASE }, 0);
   }
 
   /* ─── VIEW cursor label ─────────────────────────────────── */
