@@ -216,7 +216,15 @@
   .scroll-arr {
     width: 12px; height: 12px; display: flex; align-items: center; justify-content: center;
   }
-  .scroll-arr svg { transform: rotate(180deg); }
+
+  @keyframes scroll-arr-wave {
+    0%, 100% { opacity: 0.2; transform: scale(0.8); }
+    50%       { opacity: 1;   transform: scale(1.05); }
+  }
+
+  .scroll-arr:nth-child(1) svg { animation: scroll-arr-wave 1.8s ease-in-out infinite 0s; }
+  .scroll-arr:nth-child(2) svg { animation: scroll-arr-wave 1.8s ease-in-out infinite 0.25s; }
+  .scroll-arr:nth-child(3) svg { animation: scroll-arr-wave 1.8s ease-in-out infinite 0.5s; }
 
   /* ─── JOURNEY SECTION ────────────────────────────────────── */
   .section-journey {
