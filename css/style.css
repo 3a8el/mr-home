@@ -774,6 +774,7 @@ h1, h2, h3, h4, h5, h6 {
     .navbar { left: 24px; right: 24px; top: 28px; width: auto;}
     .nav-links { display: none; }
     .logo-img { width: 130px; }
+    .hero { height: 100vh; height: 100svh; }
     .hero-content { left: 24px; right: 24px; bottom: 48px; }
     .hero-left { max-width: 100%; }
     .hero-title { font-size: clamp(32px, 8vw, 48px); margin-right: -20px; }
