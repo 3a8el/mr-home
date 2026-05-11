@@ -792,6 +792,10 @@ h1, h2, h3, h4, h5, h6 {
     .journey-title .line-2a { display: inline; }
     .journey-title .line-2b { display: block; text-align: right; }
     .journey-title .line-3 { display: inline-block; text-align: left; }
+    .highlight-box::before { top: -2px; height: calc(100% + 4px); }
+    .highlight-box::after  { top: -2px; height: calc(100% + 4px); }
+    .highlight-dot-tr { right: -10px; top: -9px; width: 6px; height: 6px; }
+    .highlight-dot-bl { left: -10px; bottom: -5px; width: 6px; height: 6px; }
     .section-cta { padding: 24px 16px; }
     .cta-card { padding: 60px 24px; }
     .cta-side {
