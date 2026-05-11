@@ -815,8 +815,8 @@ h1, h2, h3, h4, h5, h6 {
     display: inline-block;
   }
     .cta-highlight-box { left: -8px; top: 0; width: calc(100% + 16px); height: 100%; }
-    .cta-bracket-left { left: -8px; height: 80%; top: 10%; }
-    .cta-bracket-right { right: -8px; height: 80%; top: 10%; display: block; }
+    .cta-bracket-left { left: -8px; height: calc(100% + 4px); top: -2px; }
+    .cta-bracket-right { right: -8px; height: calc(100% + 4px); top: -2px; display: block; }
     .cta-bracket-dot { right: -12px; top: -10px; width: 6px; height: 6px; display: block; }
     .cta-bracket-dot-bl { left: -12px; bottom: -4px; width: 6px; height: 6px; display: block; }
      .cta-title .line2 {
