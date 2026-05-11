@@ -805,20 +805,20 @@ h1, h2, h3, h4, h5, h6 {
     .cta-title {
     font-size: 32px;
     width: 100%;
+    text-align: right;
   }
     .cta-title-block {
     width: 100%;
     align-items: flex-start;
   }
     .cta-title .line1 {
-    display: block;
-    text-align: right;
+    display: inline-block;
   }
     .cta-highlight-box { left: -8px; top: 0; width: calc(100% + 16px); height: 100%; }
     .cta-bracket-left { left: -8px; }
-    .cta-bracket-right { display: block; }
-    .cta-bracket-dot { display: block; }
-    .cta-bracket-dot-bl { display: block; }
+    .cta-bracket-right { right: -8px; display: block; }
+    .cta-bracket-dot { right: -12px; top: -10px; width: 6px; height: 6px; display: block; }
+    .cta-bracket-dot-bl { left: -12px; bottom: -4px; width: 6px; height: 6px; display: block; }
      .cta-title .line2 {
     display: block;
     text-align: left;
