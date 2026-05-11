@@ -1,3 +1,15 @@
+/* ─── HELONY FONT ─────────────────────────────────────────── */
+@font-face {
+  font-family: 'Helony';
+  src: url('/assets/fonts/helony.woff2') format('woff2'),
+       url('/assets/fonts/helony.woff')  format('woff'),
+       url('/assets/fonts/helony.ttf')   format('truetype'),
+       url('/assets/fonts/helony.otf')   format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ─── TOKENS ─────────────────────────────────────────────── */
   :root {
     --yellow-600: #E9C91C;
@@ -14,8 +26,12 @@
     --gs-700: #626262;
     --gs-1100: #252525;
     --font-body: 'Montserrat', sans-serif;
-    --font-display: 'Georgia', serif; /* fallback for Helony */
+    --font-display: 'Helony', Georgia, serif;
   }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+}
 
   /* ─── CUSTOM CURSOR ──────────────────────────────────────── */
   @media (pointer: fine) {
