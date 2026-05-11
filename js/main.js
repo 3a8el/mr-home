@@ -473,13 +473,6 @@ function startHeroAnimations() {
       }
     });
 
-    gsap.set('.cta-mobile-content', { opacity: 0 });
-    gsap.to('.cta-mobile-content', {
-      opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
-      delay: 0.5,
-      scrollTrigger: { trigger: '.section-cta', start: 'top 70%' }
-    });
-
     gsap.from('.cta-right', {
       opacity:0, x:40, duration:.9, ease:'power3.out',
       scrollTrigger: { trigger: '.section-cta', start:'top 65%' }
