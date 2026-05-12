@@ -133,6 +133,11 @@
   transition: color .2s;
   display: flex;
   align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: .04em;
 }
 
 .contact-socials a:hover { color: var(--yellow-600); }
