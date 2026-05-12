@@ -539,6 +539,12 @@
 
   .about-hero .scroll-widget { display: none; }
 
+  /* Hero highlight mobile fixes */
+  .about-highlight-box::before { top: -2px; height: calc(100% + 4px); }
+  .about-highlight-box::after  { top: -2px; height: calc(100% + 4px); }
+  .about-title-dot-tr { right: -10px; top: -9px; width: 6px; height: 6px; }
+  .about-title-dot-bl { left: -10px; bottom: -5px; width: 6px; height: 6px; }
+
   /* ─── PHOTO GRID ─── */
   .about-hero-grid {
     flex: none;
@@ -559,6 +565,12 @@
   .about-journey { padding: 48px 24px; }
   .about-journey-title { font-size: 28px; }
 
+  /* Journey highlight mobile fixes */
+  .aj-highlight-box::before { top: -2px; height: calc(100% + 4px); }
+  .aj-highlight-box::after  { top: -2px; height: calc(100% + 4px); }
+  .aj-dot-tr { right: -10px; top: -9px; width: 6px; height: 6px; }
+  .aj-dot-bl { left: -10px; bottom: -5px; width: 6px; height: 6px; }
+
   /* ─── COLLAGE ─── */
   .about-collage { height: 400px; }
   .about-collage-img-1 { width: 70%; height: 300px; }
@@ -566,7 +578,7 @@
 
   /* ─── DIFFERENCE ─── */
   .about-difference {
-    margin-top: 40px;
+    margin: 40px 0 60px;
     padding: 40px 20px;
   }
   .about-culture-grid {
@@ -575,11 +587,17 @@
   }
   .about-culture-card { height: auto; padding: 20px 0; }
 
+  /* Difference highlight mobile fixes */
+  .ad-highlight-box::before { top: -2px; height: calc(100% + 4px); }
+  .ad-highlight-box::after  { top: -2px; height: calc(100% + 4px); }
+  .ad-dot-tr { right: -10px; top: -9px; width: 6px; height: 6px; }
+  .ad-dot-bl { left: -10px; bottom: -5px; width: 6px; height: 6px; }
+
   /* ─── SUSTAINABILITY ─── */
   .about-sustainability { padding: 0 0 60px; }
 
   .about-sust-images {
-    height: 80vh;
+    height: 60vh;
     border-radius: 0;
   }
 
@@ -619,5 +637,9 @@
   }
 
   .about-sust-subtitle { white-space: normal; }
+
+  /* Sustainability subtitle highlight mobile fixes */
+  .as-highlight-box::before { top: -2px; height: calc(100% + 4px); }
+  .as-highlight-box::after  { top: -2px; height: calc(100% + 4px); }
 
 }

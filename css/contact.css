@@ -289,6 +289,12 @@
 
   .contact-hero-title { font-size: 36px; }
 
+  /* Contact hero highlight mobile fixes */
+  .ch-highlight-box::before { top: -2px; height: calc(100% + 4px); }
+  .ch-highlight-box::after  { top: -2px; height: calc(100% + 4px); }
+  .ch-dot-tr { right: -10px; top: -9px; width: 6px; height: 6px; }
+  .ch-dot-bl { left: -10px; bottom: -5px; width: 6px; height: 6px; }
+
   .contact-info-cards {
     flex-direction: column;
     gap: 1px;
