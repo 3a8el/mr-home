@@ -108,6 +108,7 @@
       const pciCards = Array.from(grid.querySelectorAll('.pci'));
       initGalleries(pciCards);
       initCursorView(pciCards);
+      initFilter(pciCards, projects.length);
     });
 
   /* ─── Build a single card element ──────────────────────── */
@@ -116,6 +117,7 @@
     a.className = 'pci';
     a.href = `project.html?id=${p.id}`;
     a.dataset.transition = 'c';
+    a.dataset.service = p.service;
 
     p.images.forEach((src, i) => {
       const div = document.createElement('div');
@@ -222,6 +224,44 @@
 
     // Old image: clips out right→left, no scale
     tl.to(out, { clipPath: GONE, duration: DUR, ease: EASE }, 0);
+  }
+
+  /* ─── Category filter ──────────────────────────────────── */
+  function initFilter(pciCards, total) {
+    const btns    = document.querySelectorAll('.pf-btn');
+    const countEl = document.getElementById('pfCount');
+
+    function updateCount(n) {
+      if (countEl) countEl.textContent = `${n} Project${n !== 1 ? 's' : ''}`;
+    }
+
+    updateCount(total);
+
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        if (btn.classList.contains('active')) return;
+        btns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.dataset.filter;
+        const show = pciCards.filter(c => filter === 'all' || c.dataset.service === filter);
+        const hide = pciCards.filter(c => filter !== 'all' && c.dataset.service !== filter);
+
+        updateCount(show.length);
+
+        gsap.to(hide, {
+          opacity: 0, y: 16, duration: 0.25, stagger: 0.04, ease: 'power2.in',
+          onComplete() { hide.forEach(c => { c.style.display = 'none'; }); }
+        });
+
+        show.forEach(c => {
+          c.style.display = 'block';
+          gsap.fromTo(c, { opacity: 0, y: 16 }, {
+            opacity: 1, y: 0, duration: 0.4, ease: 'power2.out', delay: 0.15
+          });
+        });
+      });
+    });
   }
 
   /* ─── VIEW cursor label ─────────────────────────────────── */
