@@ -276,6 +276,7 @@
 
 /* ─── MOBILE ─────────────────────────────────────────────── */
 @media (max-width: 900px) {
+  .contact-hero .navbar { position: absolute; }
   .contact-hero-content {
     padding: 80px 24px 48px;
     gap: 40px;
