@@ -5,7 +5,6 @@
       "name": "Signature Kitchen",
       "service": "Kitchen Renovation",
       "date": "December 2025",
-      "client": "Design Lab",
       "location": "New Giza, Cairo",
       "heroImage": "/assets/images/mr-home-kitchen-1.webp",
       "images": [
@@ -19,7 +18,6 @@
       "name": "Modern TV Wall",
       "service": "Architectural Woodwork",
       "date": "November 2025",
-      "client": "Private Residence",
       "location": "Abu Dhabi, UAE",
       "heroImage": "/assets/images/mr-home-tv-wall.webp",
       "images": [
@@ -33,7 +31,6 @@
       "name": "Walk-in Dressing Room",
       "service": "Dressing Room",
       "date": "October 2025",
-      "client": "Private Client",
       "location": "Cairo, Egypt",
       "heroImage": "/assets/images/Mr-home-dressings.webp",
       "images": [
@@ -47,7 +44,6 @@
       "name": "Custom Kitchen Suite",
       "service": "Kitchen Renovation",
       "date": "November 2025",
-      "client": "Al Barari Homes",
       "location": "Dubai, UAE",
       "heroImage": "https://picsum.photos/seed/pj4hero/1600/900",
       "images": [
