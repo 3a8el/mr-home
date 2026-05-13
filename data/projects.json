@@ -51,6 +51,17 @@
         "https://picsum.photos/seed/pj4b/1400/840",
         "https://picsum.photos/seed/pj4c/1400/840"
       ]
+    },
+    {
+      "id": "5",
+      "name": "Signature Kitchen",
+      "service": "Kitchens",
+      "date": "2026",
+      "location": "Mr. Home's Showroom, New Cairo",
+      "heroImage": "/assets/images/sig-kitchen.webp",
+      "images": [
+        "/assets/images/sig-kitchen.webp"
+      ]
     }
   ]
 }
