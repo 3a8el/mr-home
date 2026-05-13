@@ -73,6 +73,21 @@
       "images": [
         "/assets/images/Sig-3.webp"
       ]
+    },
+    {
+      "id": "7",
+      "name": "Hotel Apartment",
+      "service": "Kitchens",
+      "date": "2024",
+      "location": "The Design Show Expo",
+      "heroImage": "/assets/images/ds-expo-1.webp",
+      "images": [
+        "/assets/images/ds-expo-1.webp",
+        "/assets/images/ds-expo-2.webp",
+        "/assets/images/ds-expo-3.webp",
+        "/assets/images/ds-expo-4.webp",
+        "/assets/images/ds-expo-5.webp"
+      ]
     }
   ]
 }
