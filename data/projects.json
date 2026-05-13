@@ -62,6 +62,17 @@
       "images": [
         "/assets/images/sig-kitchen.webp"
       ]
+    },
+    {
+      "id": "6",
+      "name": "Signature Kitchen",
+      "service": "Kitchens",
+      "date": "2023",
+      "location": "El Katameya, New Cairo",
+      "heroImage": "/assets/images/Sig-3.webp",
+      "images": [
+        "/assets/images/Sig-3.webp"
+      ]
     }
   ]
 }
