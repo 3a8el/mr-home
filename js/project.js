@@ -42,6 +42,36 @@
         if (span) span.textContent = project[item.dataset.field] || '';
       });
 
+      /* gallery — only when more than 1 image exists */
+      const gallerySection = document.getElementById('pgGallery');
+      const galleryGrid    = document.getElementById('pgGrid');
+      if (gallerySection && galleryGrid && project.images.length > 1) {
+        project.images.forEach(src => {
+          const item = document.createElement('div');
+          item.className = 'pg-item';
+          const img = document.createElement('img');
+          img.src = src;
+          img.alt = project.name;
+          img.loading = 'lazy';
+          item.appendChild(img);
+          galleryGrid.appendChild(item);
+        });
+        gallerySection.style.display = '';
+
+        /* fade-up reveal on scroll */
+        gsap.from(galleryGrid.querySelectorAll('.pg-item'), {
+          opacity: 0,
+          y: 40,
+          duration: 0.7,
+          stagger: 0.1,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: gallerySection,
+            start: 'top 80%',
+          }
+        });
+      }
+
       /* re-query after DOM is built */
       const titleEls = document.querySelectorAll('.ph-title .ph-pl');
       const subEls   = document.querySelectorAll('.ph-sub .ph-pl');
