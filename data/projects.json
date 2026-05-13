@@ -40,19 +40,6 @@
       ]
     },
     {
-      "id": "4",
-      "name": "Custom Kitchen Suite",
-      "service": "Kitchens",
-      "date": "November 2025",
-      "location": "Dubai, UAE",
-      "heroImage": "https://picsum.photos/seed/pj4hero/1600/900",
-      "images": [
-        "https://picsum.photos/seed/pj4a/1400/840",
-        "https://picsum.photos/seed/pj4b/1400/840",
-        "https://picsum.photos/seed/pj4c/1400/840"
-      ]
-    },
-    {
       "id": "5",
       "name": "Signature Kitchen",
       "service": "Kitchens",
