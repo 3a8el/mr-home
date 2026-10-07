@@ -1,7 +1,7 @@
 Mr. Home Website — Project Summary
 Project Overview
 Building a luxury interior design portfolio website for Mr. Home brand — a specialized manufacturer of custom Kitchens, Dressing Rooms, and Architectural Woodwork based in Abu Dhabi, UAE.
-Live URL: https://mr-home.vercel.app/
+Live URL: https://mr-home.online/ (Hostinger; previously https://mr-home.vercel.app/)
 GitHub: https://github.com/3a8el/mr-home
 Figma: https://www.figma.com/design/Dimv5tb7vs745nI2L0poAD/Mr.-Home
 
@@ -11,7 +11,7 @@ Pure HTML / CSS / Vanilla JS — no framework
 GSAP + ScrollTrigger — all animations
 Lenis (@studio-freight/lenis@1.0.42) — smooth scroll
 Google Fonts — Montserrat
-Hosted on Vercel, connected to GitHub (auto-deploy on push)
+Hosted on Hostinger (mr-home.online), deployed via deploy.sh over SSH — no auto-deploy on push
 
 
 Project Structure
@@ -124,11 +124,16 @@ SEO — meta tags, favicon, og:image
 
 
 Git Workflow
+Site moved from Vercel to Hostinger (mr-home.online) on 2026-10-07. There is
+no auto-deploy — pushing to GitHub does NOT update the live site.
 bash# After any change, in VS Code terminal (D:\mr-home):
 git add .
 git commit -m "description"
 git push
-# Vercel auto-redeploys in ~30 seconds
+./deploy.sh   # uploads only changed production files to Hostinger over SSH
+# deploy.sh needs deploy.conf (gitignored, not committed — copy from
+# deploy.conf.example and fill in SSH host/port/user) and the SSH key at
+# ~/.ssh/mrhome_hostinger to already be authorized on the server.
 Important Notes
 
 Nav SVG arrow path: M6.69937 9.67397L7.67848 6.01985L8.28354 3.78451C8.53671 2.83968 7.97421 1.8654 7.02938 1.61223L1.1327 0.0322193C0.358619 -0.175195 -0.274373 0.661765 0.121461 1.34737L2.45896 5.39604L5.05479 9.89215C5.45479 10.585 6.49195 10.4481 6.69937 9.67397Z
