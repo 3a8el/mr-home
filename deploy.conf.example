@@ -1,0 +1,5 @@
+# Copy to deploy.conf (gitignored) and fill in real values.
+SSH_KEY=~/.ssh/mrhome_hostinger
+SSH_PORT=65002
+SSH_HOST=user@server-ip
+REMOTE_ROOT=domains/your-domain.com/public_html
