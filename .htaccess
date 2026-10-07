@@ -1,0 +1,29 @@
+RewriteEngine On
+
+# --- Redirect old literal URLs to clean ones (301) ---
+
+RewriteCond %{THE_REQUEST} \s/+index\.html[\s?] [NC]
+RewriteRule ^ /? [R=301,L]
+
+RewriteCond %{THE_REQUEST} \s/+pages/project\.html\?id=([^\s&]+) [NC]
+RewriteRule ^ /projects/%1? [R=301,L]
+
+RewriteCond %{THE_REQUEST} \s/+pages/projects\.html[\s?] [NC]
+RewriteRule ^ /projects? [R=301,L]
+
+RewriteCond %{THE_REQUEST} \s/+pages/about\.html[\s?] [NC]
+RewriteRule ^ /about? [R=301,L]
+
+RewriteCond %{THE_REQUEST} \s/+pages/contact\.html[\s?] [NC]
+RewriteRule ^ /contact? [R=301,L]
+
+RewriteCond %{THE_REQUEST} \s/+pages/privacy\.html[\s?] [NC]
+RewriteRule ^ /privacy? [R=301,L]
+
+# --- Internally serve clean URLs from the real files (no visible redirect) ---
+
+RewriteRule ^projects/([0-9]+)/?$ pages/project.html?id=$1 [L,QSA]
+RewriteRule ^projects/?$ pages/projects.html [L]
+RewriteRule ^about/?$ pages/about.html [L]
+RewriteRule ^contact/?$ pages/contact.html [L]
+RewriteRule ^privacy/?$ pages/privacy.html [L]

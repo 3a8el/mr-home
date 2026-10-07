@@ -6,52 +6,52 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://mr-home.online/pages/about.html</loc>
+    <loc>https://mr-home.online/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mr-home.online/pages/projects.html</loc>
+    <loc>https://mr-home.online/projects</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://mr-home.online/pages/contact.html</loc>
+    <loc>https://mr-home.online/contact</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://mr-home.online/pages/project.html?id=1</loc>
+    <loc>https://mr-home.online/projects/1</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://mr-home.online/pages/project.html?id=2</loc>
+    <loc>https://mr-home.online/projects/2</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://mr-home.online/pages/project.html?id=3</loc>
+    <loc>https://mr-home.online/projects/3</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://mr-home.online/pages/project.html?id=5</loc>
+    <loc>https://mr-home.online/projects/5</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://mr-home.online/pages/project.html?id=6</loc>
+    <loc>https://mr-home.online/projects/6</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://mr-home.online/pages/project.html?id=7</loc>
+    <loc>https://mr-home.online/projects/7</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://mr-home.online/pages/privacy.html</loc>
+    <loc>https://mr-home.online/privacy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>

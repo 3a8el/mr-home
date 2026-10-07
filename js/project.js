@@ -11,9 +11,10 @@
 
   if (!heroImg || !imgWrap) return;
 
-  const id = new URLSearchParams(window.location.search).get('id');
+  const pathMatch = window.location.pathname.match(/\/projects\/([^/]+)\/?$/);
+  const id = pathMatch ? pathMatch[1] : new URLSearchParams(window.location.search).get('id');
 
-  fetch('../data/projects.json')
+  fetch('/data/projects.json')
     .then(r => r.json())
     .then(({ projects }) => {
       const project = id ? projects.find(p => p.id === id) : projects[0];
@@ -22,7 +23,7 @@
       /* page title + meta tags */
       const pageTitle = `${project.name} – Mr. Home`;
       const pageDesc = `${project.name} — a bespoke ${project.service.toLowerCase()} project by Mr. Home in ${project.location}.`;
-      const pageUrl = `https://mr-home.online/pages/project.html?id=${project.id}`;
+      const pageUrl = `https://mr-home.online/projects/${project.id}`;
       const pageImage = `https://mr-home.online${project.heroImage}`;
 
       document.title = pageTitle;

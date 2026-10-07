@@ -97,7 +97,7 @@
   const grid = document.getElementById('projectsGrid');
   if (!grid) return;
 
-  fetch('../data/projects.json')
+  fetch('/data/projects.json')
     .then(r => r.json())
     .then(({ projects }) => {
       const loadMoreWrap = grid.querySelector('.projects-load-more-wrap');
@@ -115,7 +115,7 @@
   function buildCard(p) {
     const a = document.createElement('a');
     a.className = 'pci';
-    a.href = `project.html?id=${p.id}`;
+    a.href = `/projects/${p.id}`;
     a.dataset.transition = 'c';
     a.dataset.service = p.service;
 
