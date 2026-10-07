@@ -1,6 +1,6 @@
 Mr. Home Website — Project Summary
 Project Overview
-Building a luxury interior design portfolio website for Mr. Home brand — a specialized manufacturer of custom Kitchens, Dressing Rooms, and Architectural Woodwork based in Abu Dhabi, UAE.
+Building a luxury interior design portfolio website for Mr. Home brand — a specialized manufacturer of custom Kitchens, Dressing Rooms, and Architectural Woodwork based in New Cairo, Egypt.
 Live URL: https://mr-home.online/ (Hostinger; previously https://mr-home.vercel.app/)
 GitHub: https://github.com/3a8el/mr-home
 Figma: https://www.figma.com/design/Dimv5tb7vs745nI2L0poAD/Mr.-Home
@@ -28,9 +28,13 @@ mr-home/
 ├── pages/
 │   ├── about.html      ← About Us (in progress)
 │   ├── contact.html    ← Contact Us (done)
-│   ├── projects.html   ← Not started
-│   └── project.html    ← Not started
-└── assets/images/
+│   ├── projects.html   ← Projects grid (done)
+│   ├── project.html    ← Single project detail, reads ?id= (done)
+│   └── privacy.html    ← Privacy policy (done)
+├── robots.txt
+├── sitemap.xml
+├── deploy.sh / deploy.conf.example  ← see Git Workflow below
+└── assets/images/, assets/favicon/
 
 Design System
 css--yellow-600: #E9C91C
@@ -120,7 +124,12 @@ Projects page — grid with filtering
 Project Single page — individual project detail
 Fix nav links on home — SVG arrows got corrupted during link replacement, fixed manually
 Real images — Figma asset URLs expire in 7 days
-SEO — meta tags, favicon, og:image
+SEO — done: robots.txt, sitemap.xml, favicon, per-page meta/OG/Twitter tags,
+  LocalBusiness JSON-LD on index.html, privacy.html page, dynamic per-project
+  meta tags in project.js. Still open: GA4 + Google Ads conversion tracking
+  (placeholder snippet is commented out in every <head> — fill in real IDs
+  and uncomment once accounts exist), image compression (several project
+  photos are 850KB-1.1MB), and no custom 404 page.
 
 
 Git Workflow

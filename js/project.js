@@ -19,8 +19,26 @@
       const project = id ? projects.find(p => p.id === id) : projects[0];
       if (!project) return;
 
-      /* page title */
-      document.title = `${project.name} – Mr. Home`;
+      /* page title + meta tags */
+      const pageTitle = `${project.name} – Mr. Home`;
+      const pageDesc = `${project.name} — a bespoke ${project.service.toLowerCase()} project by Mr. Home in ${project.location}.`;
+      const pageUrl = `https://mr-home.online/pages/project.html?id=${project.id}`;
+      const pageImage = `https://mr-home.online${project.heroImage}`;
+
+      document.title = pageTitle;
+      const setMeta = (selector, attr, value) => {
+        const el = document.querySelector(selector);
+        if (el) el.setAttribute(attr, value);
+      };
+      setMeta('meta[name="description"]', 'content', pageDesc);
+      setMeta('link[rel="canonical"]', 'href', pageUrl);
+      setMeta('meta[property="og:title"]', 'content', pageTitle);
+      setMeta('meta[property="og:description"]', 'content', pageDesc);
+      setMeta('meta[property="og:url"]', 'content', pageUrl);
+      setMeta('meta[property="og:image"]', 'content', pageImage);
+      setMeta('meta[name="twitter:title"]', 'content', pageTitle);
+      setMeta('meta[name="twitter:description"]', 'content', pageDesc);
+      setMeta('meta[name="twitter:image"]', 'content', pageImage);
 
       /* hero image */
       heroImg.src = project.heroImage;
