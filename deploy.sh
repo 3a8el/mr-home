@@ -11,7 +11,7 @@ fi
 source deploy.conf
 
 MARKER=.last-deploy
-PROD_PATHS=(index.html css js pages assets data)
+PROD_PATHS=(index.html robots.txt sitemap.xml css js pages assets data)
 
 SSH="ssh -i $SSH_KEY -p $SSH_PORT $SSH_HOST"
 
