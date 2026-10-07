@@ -30,8 +30,11 @@ gsap.registerPlugin(ScrollTrigger);
   let fakeProgress = 0;
   let realDone = false;
 
-  // Count all images + track load
-  const images = document.querySelectorAll('img');
+  // Only gate on above-the-fold images (e.g. the hero logo) — waiting on
+  // every image site-wide (including far-below-fold project/service photos)
+  // was adding several extra seconds to mobile Speed Index for content the
+  // visitor can't even see yet.
+  const images = document.querySelectorAll('.hero img');
   totalAssets = images.length || 1;
 
   function onAssetLoad() {
