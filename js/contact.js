@@ -133,20 +133,44 @@ gsap.from('.contact-form', {
 // Form submission handler
 const form = document.getElementById('contactForm');
 if (form) {
-  form.addEventListener('submit', (e) => {
+  const status = document.getElementById('formStatus');
+
+  // Arrived back here from the no-JS fallback after a server error
+  if (status && new URLSearchParams(location.search).get('error')) {
+    status.textContent = 'Sorry, your message could not be sent. Please call or WhatsApp us on +20 11 42451985.';
+  }
+
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const btn = form.querySelector('button[type="submit"]');
     const originalText = btn.innerHTML;
+    if (status) status.textContent = '';
 
-    // Animate button
     gsap.to(btn, { scale: 0.96, duration: 0.1, yoyo: true, repeat: 1 });
-    btn.innerHTML = '✓ Message Sent!';
-    btn.style.background = '#2d7a3a';
+    btn.disabled = true;
+    btn.innerHTML = 'SENDING…';
 
-    setTimeout(() => {
+    try {
+      const res  = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.ok) throw new Error(data.error || 'Request failed');
+
+      btn.innerHTML = '✓ Message Sent!';
+      btn.style.background = '#2d7a3a';
+      // Thank-you page fires the Meta "Lead" event and gives ads a conversion URL
+      setTimeout(() => { window.location.href = '/thank-you'; }, 600);
+    } catch (err) {
+      btn.disabled = false;
       btn.innerHTML = originalText;
-      btn.style.background = '';
-      form.reset();
-    }, 3000);
+      if (status) {
+        status.textContent = (err && err.message && err.message !== 'Request failed' && !/fetch|network|JSON/i.test(err.message))
+          ? err.message
+          : 'Sorry, your message could not be sent. Please call or WhatsApp us on +20 11 42451985.';
+      }
+    }
   });
 }

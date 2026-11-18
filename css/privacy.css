@@ -57,6 +57,13 @@
   color: var(--yellow-600);
 }
 
+/* Thank-you page reuses this layout; keep its CTA a normal yellow button */
+.privacy-main a.btn,
+.privacy-main a.btn:hover {
+  color: var(--gs-100);
+  text-decoration: none;
+}
+
 @media (max-width: 600px) {
   .privacy-header { min-height: 220px; }
   .privacy-header-title { left: 24px; right: 24px; font-size: 28px; }

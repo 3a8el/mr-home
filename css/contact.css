@@ -278,6 +278,19 @@
   margin-top: 32px;
   align-self: flex-start;
 }
+.contact-form .btn[disabled] {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+/* Submit result message (errors only — success redirects to /thank-you) */
+.form-status {
+  margin-top: 16px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #b3261e;
+}
+.form-status:empty { display: none; }
 
 /* ─── MOBILE ─────────────────────────────────────────────── */
 @media (max-width: 900px) {

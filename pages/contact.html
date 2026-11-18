@@ -145,7 +145,8 @@
       <p class="contact-form-desc">Whether you're a homeowner, interior designer, or contractor seeking a trusted partner in Egypt or the Gulf region, we're here to bring your vision to life. Get in touch with us today.</p>
     </div>
     <div class="contact-form-right">
-      <form class="contact-form" id="contactForm">
+      <form class="contact-form" id="contactForm" action="/api/contact.php" method="post">
+        <div class="form-hp" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;"><label>Website <input type="text" name="website" tabindex="-1" autocomplete="off" /></label></div>
         <div class="form-field"><input type="text" name="name" placeholder="Enter your full name" required /></div>
         <div class="form-field"><input type="tel" name="phone" placeholder="Enter your phone number" required /></div>
         <div class="form-field"><input type="email" name="email" placeholder="Enter your email address" required /></div>
@@ -162,6 +163,7 @@
           <svg width="9" height="11" viewBox="0 0 9 11" fill="none"><path d="M6.69937 9.67397L7.67848 6.01985L8.28354 3.78451C8.53671 2.83968 7.97421 1.8654 7.02938 1.61223L1.1327 0.0322193C0.358619 -0.175195 -0.274373 0.661765 0.121461 1.34737L2.45896 5.39604L5.05479 9.89215C5.45479 10.585 6.49195 10.4481 6.69937 9.67397Z" fill="white"/></svg>
           SUBMIT REQUEST
         </button>
+        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
       </form>
     </div>
   </div>
